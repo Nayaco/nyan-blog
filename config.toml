@@ -1,4 +1,26 @@
-baseURL = ""
-languageCode = "en-us"
-title = "My New Hugo Site"
+baseURL = "blog.nyanco.top"
+languageCode = "zh-cn"
+title = "NyancoChan's blog"
 theme = "github-style"
+# googleAnalytics = "UA-123456-789"
+# pygmentsCodeFences = true
+# pygmentsUseClasses = true
+
+[params]
+  author = "NyanC"
+  description = "In solitude, where we are least alone."
+  github = "NyancoChan"
+  email = "me@nyanco.top"
+  keywords = "blog"
+  rss = true
+  lastmod = true
+  favicon = "/images/github.png"
+  location = "China"
+
+  [[params.links]]
+    title = "Github"
+    href = "https://github.com/Nayaco"
+
+[frontmatter]
+  lastmod = ["lastmod", ":fileModTime", ":default"]
+

@@ -1,4 +1,4 @@
-# #!/bin/sh
+#!/bin/sh
 
 # if [ "`git status -s`" ]
 # then
@@ -26,3 +26,12 @@
 
 # #echo "Pushing to github"
 # #git push --all
+
+echo "Building blog pages..."
+hugo -D
+
+echo "Updating master branch..."
+git add . && git commit -m "Publishing to gh-pages" 
+
+echo "Pushing to github..."
+git push origin master

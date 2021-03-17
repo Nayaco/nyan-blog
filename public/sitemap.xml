@@ -2,17 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/</loc>
-    <lastmod>2021-03-16T22:07:42+08:00</lastmod>
+    <loc>blog.nyanco.top/</loc>
+    <lastmod>2021-03-17T17:33:26+08:00</lastmod>
   </url><url>
-    <loc>/post/</loc>
-    <lastmod>2021-03-16T22:07:42+08:00</lastmod>
+    <loc>blog.nyanco.top/post/</loc>
+    <lastmod>2021-03-17T17:33:26+08:00</lastmod>
   </url><url>
-    <loc>/post/welcome/</loc>
-    <lastmod>2021-03-16T22:07:42+08:00</lastmod>
+    <loc>blog.nyanco.top/post/welcome/</loc>
+    <lastmod>2021-03-17T17:33:26+08:00</lastmod>
   </url><url>
-    <loc>/categories/</loc>
+    <loc>blog.nyanco.top/categories/</loc>
   </url><url>
-    <loc>/tags/</loc>
+    <loc>blog.nyanco.top/tags/</loc>
   </url>
 </urlset>
