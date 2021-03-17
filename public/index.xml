@@ -9,11 +9,11 @@
     <lastBuildDate>Tue, 16 Mar 2021 22:07:42 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Welcome</title>
-      <link>/posts/welcome/</link>
+      <link>/post/welcome/</link>
       <pubDate>Tue, 16 Mar 2021 22:07:42 +0800</pubDate>
       
-      <guid>/posts/welcome/</guid>
-      <description></description>
+      <guid>/post/welcome/</guid>
+      <description>hello</description>
     </item>
     
   </channel>
