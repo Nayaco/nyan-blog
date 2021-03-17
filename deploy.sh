@@ -28,7 +28,8 @@
 # #git push --all
 
 echo "Building blog pages..."
-hugo -D
+hugo -D && echo "blog.nyanco.top" > ./public/CNAME
+
 
 echo "Updating master branch..."
 git add . && git commit -m "Publishing to gh-pages" 
