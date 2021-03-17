@@ -1,26 +1,50 @@
 baseURL = "https://blog.nyanco.top"
 languageCode = "zh-cn"
-title = "NyancoChan's blog"
-theme = "github-style"
+title = "NyanC's Blog"
+# theme = "github-style"
+theme = "m10c"
 # googleAnalytics = "UA-123456-789"
-# pygmentsCodeFences = true
-# pygmentsUseClasses = true
+pygmentsCodeFences = true
+pygmentsUseClasses = true
 
 [params]
   author = "NyanC"
-  description = "In solitude, where we are least alone."
-  github = "NyancoChan"
+  description = "At least I was a daydreamer."
+  github = "Nayaco"
   email = "me@nyanco.top"
-  keywords = "blog"
+  avatar = "/images/avatar.jpg"
   rss = true
   lastmod = true
   favicon = "/images/github.png"
   location = "China"
-
-  [[params.links]]
-    title = "Github"
-    href = "https://github.com/Nayaco"
-
+  menu_item_separator = " - "
+  [[params.social]]
+    icon = "github"
+    name = "Github"
+    url = "https://github.com/Nayaco"
+  [[params.social]]
+    icon = "rss"
+    name = "RSS"
+    url = "/index.xml"
+  
 [frontmatter]
   lastmod = ["lastmod", ":fileModTime", ":default"]
+
+
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
+    weight = 2
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 3
 
