@@ -1,4 +1,4 @@
-baseURL = "nyan-blog-7gjda1kt7bd21f2b-1253938567.tcloudbaseapp.com"
+baseURL = ""
 languageCode = "en-us"
 title = "My New Hugo Site"
 theme = "github-style"

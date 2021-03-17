@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on My New Hugo Site</title>
-    <link>nyan-blog-7gjda1kt7bd21f2b-1253938567.tcloudbaseapp.com/tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="nyan-blog-7gjda1kt7bd21f2b-1253938567.tcloudbaseapp.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
