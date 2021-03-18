@@ -20,7 +20,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.nyanco.top/posts/welcome/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-03-16T22:07:42&#43;08:00" />
-<meta property="article:modified_time" content="2021-03-18T02:04:33&#43;08:00" />
+<meta property="article:modified_time" content="2021-03-18T14:54:09&#43;08:00" />
 
 
 
@@ -89,40 +89,85 @@
     </header>
     <div class="post-content">
       <hr>
-<p>  Markdown是一种轻量级标记语言,创始人为John Gruber. Markdown对于图片,图表和数学有相应的支持.</p>
+<p>Markdown是一种轻量级标记语言,创始人为John Gruber. Markdown对于图片,图表和数学有相应的支持.</p>
 <h3 id="标题">标题</h3>
-<p>  Markdown使用 <strong><code>#</code></strong> 符号表示标题标签.不同数量表示不同级别的标题.</p>
+<p>Markdown使用 <strong><code>#</code></strong> 符号表示标题标签.不同数量表示不同级别的标题.</p>
 <pre><code># 一级标题
 
 ## 二级标题
 
 ### 三级标题
 </code></pre><h3 id="样式">样式</h3>
-<p>  Markdown可使用特殊调节语法字体样式,包括倾斜,加粗等。</p>
-<pre><code>`突出`  **加粗** *倾斜*  ==标记== --删除-- &gt; 引用 
+<p>Markdown可使用特殊调节语法字体样式,包括倾斜,加粗等。</p>
+<pre><code>`代码`  **加粗** *倾斜*  ==标记== ~~删除~~ &gt; 引用 &gt;&gt; 引用嵌套
 </code></pre><h3 id="图片と链接">图片と链接</h3>
 <pre><code>![Description](PicturenURL)
 [Description](LinkURL)
-</code></pre><h3 id="文本">文本</h3>
-<p>文本框用两个 <strong>```</strong> 表示,文本框中间的文字将不使用Markdown语法解析.采用Highlight则需要在第一组三个点之后加上需要高亮的语法.</p>
-<pre><code>` ` `c
-int main() {
-    puts(&quot;hello&quot;);
-}
-` ` `
-` ` `bash
-#!/bin/bash
-echo hello
-` ` `
-</code></pre><h3 id="分割线">分割线</h3>
+</code></pre><h3 id="代码块">代码块</h3>
+<p>代码块用两个 <strong>```</strong> 或四个空格或一个制表符表示,代码块中间的文字将不使用Markdown语法解析.采用Highlight则需要在第一组三个点之后加上需要高亮的语法.</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">    <span class="c1">#!/bin/bash</span>
+    <span class="nb">echo</span> hello
+</code></pre></div><h3 id="分割线">分割线</h3>
 <p>三个以上的符号</p>
 <pre><code>--- *** +++ ___
-</code></pre>
+</code></pre><h3 id="列表と表单">列表と表单</h3>
+<p>使用数字加半角句点创建有序列表,使用特殊符号创建无序表单.</p>
+<pre><code>1. Item1
+2. Item2
+4. Item3
+</code></pre><pre><code>+ Item
+* Item
+- Item
+    - Indented item
+</code></pre><p>也可以使用<code>[ ]</code> <code>[x]</code>语法添加勾选样式.</p>
+<pre><code>- [ ] Item
+- [x] Item
+</code></pre><ul>
+<li><input checked="" disabled="" type="checkbox"> Item</li>
+<li><input disabled="" type="checkbox"> Item</li>
+</ul>
+<p>要添加表单,使用三个以上的连字符(&mdash;)创建标题,使用(|)分隔列.</p>
+<pre><code>|Title1|Title2|
+|------|------|
+|Item1 |Item2 |
+</code></pre><table>
+<thead>
+<tr>
+<th style="text-align:right">Title1</th>
+<th style="text-align:right">Title2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">Item1</td>
+<td style="text-align:right">Item2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="emoji">Emoji</h3>
+<pre><code>Next Time \:joy\:
+</code></pre><p>Next Time 😂</p>
+<p><img src="/images/NextTime.png" alt=""></p>
+
     </div>
     <div class="post-footer">
       
     </div>
   </article>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+<script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<style>
+  .hljs {
+    background: rgb(238, 234, 234);
+  }
+</style>
+
 
     </main>
   </body>

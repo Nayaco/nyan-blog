@@ -6,7 +6,7 @@ theme = "m10c"
 # googleAnalytics = "UA-123456-789"
 pygmentsCodeFences = true
 pygmentsUseClasses = true
-
+enableEmoji = true
 [params]
   author = "NyanC"
   description = "At least I was a daydreamer."
