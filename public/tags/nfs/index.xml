@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NFS on NyanC&#39;s Blog</title>
+    <link>https://blog.nyanco.top/tags/nfs/</link>
+    <description>Recent content in NFS on NyanC&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 18 Mar 2021 13:42:04 +0800</lastBuildDate><atom:link href="https://blog.nyanco.top/tags/nfs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Build a Diskless Cluster(Centos7)</title>
+      <link>https://blog.nyanco.top/posts/build-a-diskless-cluster/</link>
+      <pubDate>Thu, 18 Mar 2021 13:42:04 +0800</pubDate>
+      
+      <guid>https://blog.nyanco.top/posts/build-a-diskless-cluster/</guid>
+      <description>无盘集群(Diskless Cluster),指集群中计算节点没有安装可启动(Bootable)的操作系统,无盘集群优点是维护方便,减少存储资源投入,使用MPI等方式执行计算时执行文件同步较方便;缺点是对 集群的网络性能,存储节点的IO性能要求较高.(PXE:M61:Media no found 🙃
+本文参考USTC集群资料撰写.
+目标集群拓扑结构:
+|----------------| |172.25.2.101(m0)|---- |----------------| | |172.25.2.102(s1)|---- |----------------| |---|Ethernet Switch| |172.25.2.103(s2)|---- |----------------| | |172.25.2.104(s3)|---- |----------------| 准备工作 准备Centos7安装镜像,此处地址为Tuna源.
+如果使用IPMI/KVM安装镜像请自动跳过以下步骤:
+准备USB flash installation medium.使用以下命令将镜像文件写入USB设备(使用USB设备/dev/sda,/dev/sdb&amp;hellip;替换/dev/sdx):
+$ dd bs=4M if=/path/to/centos.iso of=/dev/sdx status=progress &amp;amp;&amp;amp; sync 在m0节点上安装Centos,并升级系统,安装必要的包:
+ dracut-network会为镜像内添加nfs等网络支持
+ $ yum -y update $ yum -y install nfs-utils tftp-server dnsmasq syslinux dracut dracut-network dracut-network包安装后在/etc/dracut.conf文件中添加:
+$ vim /etc/dracut.conf # add nfs root support add_dracutmodules+=&amp;#34;nfs&amp;#34; 关闭SELinux
+$ vim /etc/sysconfig/selinux # This file controls the state of SELinux on the system.</description>
+    </item>
+    
+  </channel>
+</rss>

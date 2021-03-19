@@ -2,6 +2,7 @@
 title: "Build a Diskless Cluster(Centos7)"
 date: 2021-03-18T13:42:04+08:00
 draft: false
+tags: ["NFS", "Linux", "PXE", "dnsmasq"]
 ---
 
 无盘集群(Diskless Cluster),指集群中计算节点没有安装可启动(Bootable)的操作系统,无盘集群优点是维护方便,减少存储资源投入,使用MPI等方式执行计算时执行文件同步较方便;缺点是对

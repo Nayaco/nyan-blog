@@ -6,7 +6,43 @@
     <description>Recent content in Tags on NyanC&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 16 Mar 2021 22:07:42 +0800</lastBuildDate><atom:link href="https://blog.nyanco.top/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 18 Mar 2021 13:42:04 +0800</lastBuildDate><atom:link href="https://blog.nyanco.top/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>dnsmasq</title>
+      <link>https://blog.nyanco.top/tags/dnsmasq/</link>
+      <pubDate>Thu, 18 Mar 2021 13:42:04 +0800</pubDate>
+      
+      <guid>https://blog.nyanco.top/tags/dnsmasq/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://blog.nyanco.top/tags/linux/</link>
+      <pubDate>Thu, 18 Mar 2021 13:42:04 +0800</pubDate>
+      
+      <guid>https://blog.nyanco.top/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NFS</title>
+      <link>https://blog.nyanco.top/tags/nfs/</link>
+      <pubDate>Thu, 18 Mar 2021 13:42:04 +0800</pubDate>
+      
+      <guid>https://blog.nyanco.top/tags/nfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PXE</title>
+      <link>https://blog.nyanco.top/tags/pxe/</link>
+      <pubDate>Thu, 18 Mar 2021 13:42:04 +0800</pubDate>
+      
+      <guid>https://blog.nyanco.top/tags/pxe/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>blog</title>
       <link>https://blog.nyanco.top/tags/blog/</link>
