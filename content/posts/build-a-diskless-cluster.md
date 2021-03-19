@@ -36,7 +36,8 @@ summary: "Build a Diskless Cluster, Using NFS, DNSMASQ"
 $ dd bs=4M if=/path/to/centos.iso of=/dev/sdx status=progress && sync
 ```
 在m0节点上安装Centos,并升级系统,安装必要的包:
-> dracut-network会为镜像内添加nfs等网络支持
+
+*dracut-network会为镜像内添加nfs等网络支持*
 
 ``` shell
 $ yum -y update
