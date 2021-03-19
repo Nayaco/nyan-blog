@@ -6,6 +6,7 @@ tags: ["blog", "markdown"]
 summary: "The summary content"
 ---
 ---
+测试新博客,随便写写,旧博客的文章不迁移了.:dog:
 
 Markdown是一种轻量级标记语言,创始人为John Gruber. Markdown对于图片,图表和数学有相应的支持.
 
