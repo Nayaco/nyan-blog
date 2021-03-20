@@ -149,6 +149,10 @@ rm -f /nfs/etc/sysconfig/network-script/ifcfg-ens*
 
 安装好系统文件后配置计算节点的挂载配置,修改/nfs/etc/fstab:
 ```
+# none    /tmp        tmpfs   defaults    0 0 
+tmpfs   /dev/shm    tmpfs   defaults    0 0 
+sysfs   /sys        sysfs   defaults    0 0 
+proc    /proc       proc    defaults    0 0
 172.25.2.101:/nfs   /    nfs defaults,rsize=32768,wsize=32768,intr   1 1
 172.25.2.101:/mnt   /mnt nfs defaults,rsize=32768,wsize=32768,intr   1 2
 ```
