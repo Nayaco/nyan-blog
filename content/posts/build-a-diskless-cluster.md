@@ -224,7 +224,8 @@ label linux
   menu label ^Cloud CentOS 7
   menu default
   kernel vmlinuz-<VMLINUZ-VERSION>.el7.x86_64
-  append root=/dev/nfs rw nfsroot=172.25.2.101:/nfs,rsize=32768,wsize=32768 ip=dhcp selinux=0 initrd=initramfs-<VMLINUZ-VERSION>.el7.x86_64.img biosdevname=0 net.ifnames=0 ipv6.disable=1
+  append root=/dev/nfs rw nfsroot=172.25.2.101:/nfs,rsize=32768,wsize=32768 ip=dhcp selinux=0\
+    initrd=initramfs-<VMLINUZ-VERSION>.el7.x86_64.img biosdevname=0 net.ifnames=0 ipv6.disable=1
 
 menu end
 ```
