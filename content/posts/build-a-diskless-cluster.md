@@ -164,6 +164,70 @@ $ dracut --add nfs /srv/tftp/initramfs-<VMLINUZ-VERSION>.el7.x86_64.img <VMLINUZ
 $ chmod 644 /srv/tftp/initramfs-<VMLINUZ-VERSION>.el7.x86_64.img
 ```
 
+### 设置计算节点PXE引导文件
+复制/usr/share/syslinux/pxelinux.0文件和vesamenu.c32到/srv/tftp目录:
+``` shell
+$ cp {/usr/share/syslinux/pxelinux.0,/usr/share/syslinux/vesamenu.c32} /srv/tftp/}
+```
+在TFTP根目录下建立pxelinux.cfg目录:
+``` shell
+$ mkdir -p /srv/tftp/pxelinux.cfg
+```
+设置计算节点boot默认配置文件/srv/tftp/pxelinux.cfg/default:
+```
+default vesamenu.c32
+timeout 10
+# Clear the screen when exiting the menu, instead of leaving the menu displayed.
+# For vesamenu, this means the graphical background is still displayed without
+# the menu itself for as long as the screen remains in graphics mode.
+menu clear
+menu title CentOS 7
+menu vshift 8
+menu rows 18
+menu margin 8
+#menu hidden
+menu helpmsgrow 15
+menu tabmsgrow 13
+
+# Border Area
+menu color border * #00000000 #00000000 none
+# Selected item
+menu color sel 0 #ffffffff #00000000 none
+# Title bar
+menu color title 0 #ff7ba3d0 #00000000 none
+# Press [Tab] message
+menu color tabmsg 0 #ff3a6496 #00000000 none
+# Unselected menu item
+menu color unsel 0 #84b8ffff #00000000 none
+# Selected hotkey
+menu color hotsel 0 #84b8ffff #00000000 none
+# Unselected hotkey
+menu color hotkey 0 #ffffffff #00000000 none
+# Help text
+menu color help 0 #ffffffff #00000000 none
+# A scrollbar of some type? Not sure.
+menu color scrollbar 0 #ffffffff #ff355594 none
+# Timeout msg
+menu color timeout 0 #ffffffff #00000000 none
+menu color timeout_msg 0 #ffffffff #00000000 none
+# Command prompt text
+menu color cmdmark 0 #84b8ffff #00000000 none
+menu color cmdline 0 #ffffffff #00000000 none
+
+# Do not display the actual menu unless the user presses a key. All that is displayed is a timeout message.
+
+menu tabmsg Press Tab for full configuration options on menu items.
+menu separator # insert an empty line
+menu separator # insert an empty line
+
+label linux
+  menu label ^Cloud CentOS 7
+  menu default
+  kernel vmlinuz-<VMLINUZ-VERSION>.el7.x86_64
+  append root=/dev/nfs rw nfsroot=172.25.2.101:/nfs,rsize=32768,wsize=32768 ip=dhcp selinux=0 initrd=initramfs-<VMLINUZ-VERSION>.el7.x86_64.img biosdevname=0 net.ifnames=0 ipv6.disable=1
+
+menu end
+```
 ### 设置节点私有目录(optional)
 除/var与/tmp目录外,基本都可以共享,考虑大IO应用(Gaussian),另外设定/tmp使用客户节点的本地硬盘.(USTC教的好)
 ``` shell

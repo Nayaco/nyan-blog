@@ -20,7 +20,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.nyanco.top/posts/build-a-diskless-cluster/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-03-18T13:42:04&#43;08:00" />
-<meta property="article:modified_time" content="2021-03-20T00:17:18&#43;08:00" />
+<meta property="article:modified_time" content="2021-03-20T16:06:54&#43;08:00" />
 
 
 
@@ -76,7 +76,7 @@
   <title>clock</title>
   <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
 </svg>
-          3 min read
+          4 min read
         </div>
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
@@ -204,7 +204,65 @@ $ exportfs -ra
 </code></pre></div><p>在/srv/tftp目录下生成支持NFS-root的initrd文件:</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ dracut --add nfs /srv/tftp/initramfs-&lt;VMLINUZ-VERSION&gt;.el7.x86_64.img &lt;VMLINUZ-VERSION&gt;.el7.x86_64
 $ chmod <span class="m">644</span> /srv/tftp/initramfs-&lt;VMLINUZ-VERSION&gt;.el7.x86_64.img
-</code></pre></div><h3 id="设置节点私有目录optional">设置节点私有目录(optional)</h3>
+</code></pre></div><h3 id="设置计算节点pxe引导文件">设置计算节点PXE引导文件</h3>
+<p>复制/usr/share/syslinux/pxelinux.0文件和vesamenu.c32到/srv/tftp目录:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ cp <span class="o">{</span>/usr/share/syslinux/pxelinux.0,/usr/share/syslinux/vesamenu.c32<span class="o">}</span> /srv/tftp/<span class="o">}</span>
+</code></pre></div><p>在TFTP根目录下建立pxelinux.cfg目录:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ mkdir -p /srv/tftp/pxelinux.cfg
+</code></pre></div><p>设置计算节点boot默认配置文件/srv/tftp/pxelinux.cfg/default:</p>
+<pre><code>default vesamenu.c32
+timeout 10
+# Clear the screen when exiting the menu, instead of leaving the menu displayed.
+# For vesamenu, this means the graphical background is still displayed without
+# the menu itself for as long as the screen remains in graphics mode.
+menu clear
+menu title CentOS 7
+menu vshift 8
+menu rows 18
+menu margin 8
+#menu hidden
+menu helpmsgrow 15
+menu tabmsgrow 13
+
+# Border Area
+menu color border * #00000000 #00000000 none
+# Selected item
+menu color sel 0 #ffffffff #00000000 none
+# Title bar
+menu color title 0 #ff7ba3d0 #00000000 none
+# Press [Tab] message
+menu color tabmsg 0 #ff3a6496 #00000000 none
+# Unselected menu item
+menu color unsel 0 #84b8ffff #00000000 none
+# Selected hotkey
+menu color hotsel 0 #84b8ffff #00000000 none
+# Unselected hotkey
+menu color hotkey 0 #ffffffff #00000000 none
+# Help text
+menu color help 0 #ffffffff #00000000 none
+# A scrollbar of some type? Not sure.
+menu color scrollbar 0 #ffffffff #ff355594 none
+# Timeout msg
+menu color timeout 0 #ffffffff #00000000 none
+menu color timeout_msg 0 #ffffffff #00000000 none
+# Command prompt text
+menu color cmdmark 0 #84b8ffff #00000000 none
+menu color cmdline 0 #ffffffff #00000000 none
+
+# Do not display the actual menu unless the user presses a key. All that is displayed is a timeout message.
+
+menu tabmsg Press Tab for full configuration options on menu items.
+menu separator # insert an empty line
+menu separator # insert an empty line
+
+label linux
+  menu label ^Cloud CentOS 7
+  menu default
+  kernel vmlinuz-&lt;VMLINUZ-VERSION&gt;.el7.x86_64
+  append root=/dev/nfs rw nfsroot=172.25.2.101:/nfs,rsize=32768,wsize=32768 ip=dhcp selinux=0 initrd=initramfs-&lt;VMLINUZ-VERSION&gt;.el7.x86_64.img biosdevname=0 net.ifnames=0 ipv6.disable=1
+
+menu end
+</code></pre><h3 id="设置节点私有目录optional">设置节点私有目录(optional)</h3>
 <p>除/var与/tmp目录外,基本都可以共享,考虑大IO应用(Gaussian),另外设定/tmp使用客户节点的本地硬盘.(USTC教的好)</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ cp -a /nfs/var /client_nodes/s1
 $ cp -a /nfs/var /client_nodes/s2
