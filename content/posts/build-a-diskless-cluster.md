@@ -63,6 +63,20 @@ SELINUX=disabled
 #     minimum - Modification of targeted policy. Only selected processes are protected. 
 #     mls - Multi Level Security protection.
 SELINUXTYPE=targeted 
+$ setenforce 0
+```
+关闭防火墙:
+``` shell
+$ systemctl disable firewalld && systemctl stop firewalld
+```
+配置内部网卡:
+``` shell
+$ vim /etc/sysconfig/network-scripts/ifcfg-<LAN-NIC>
+BOOTPROTO=static
+IPADDR=172.25.2.101
+NETMASK=255.255.255.0
+ONBOOT=yes
+$ ip addr add 172.25.2.101 dev <LAN-NIC>
 ```
 
 ### 配置TFTP和DHCP服务(dnsmasq)
@@ -76,15 +90,6 @@ tftp-root=/srv/tftp
 
 # Do not abort if the tftp-root is unavailable
 tftp-no-fail
-
-# Make the TFTP server more secure: with this set, only files owned by
-# the user dnsmasq is running as will be send over the net.
-tftp-secure
-
-# This option stops dnsmasq from negotiating a larger blocksize for TFTP
-# transfers. It will slow things down, but may rescue some broken TFTP
-# clients.
-tftp-no-blocksize
 ```
 配置PXE-BOOT相关配置项(Legacy):
 ```
@@ -95,8 +100,8 @@ dhcp-boot=pxelinux/pxelinux.0
 ```
 # Only listen to routers' LAN NIC.  Doing so opens up tcp/udp port 53 to
 # localhost and udp port 67 to world:
-# interface=<LAN-NIC>
-interface=eth0
+interface=<LAN-NIC>
+
 # dnsmasq will open tcp/udp port 53 and udp port 67 to world to help with
 # dynamic interfaces (assigning dynamic ips). Dnsmasq will discard world
 # requests to them, but the paranoid might like to close them and let the
@@ -112,6 +117,11 @@ dhcp-host=<MAC-S1>,s1,172.25.2.102
 dhcp-host=<MAC-S2>,s2,172.25.2.103
 dhcp-host=<MAC-S3>,s3,172.25.2.104
 ```
+配置DNSMASQ开机自启动:
+``` shell
+$ systemctl enable dnsmasq && systemctl start dnsmasq
+```
+
 ### 配置NFS相关服务
 ``` shell
 $ mkdir /nfs /client_nodes
@@ -146,7 +156,6 @@ $ rsync -a -e ssh --exclude='/proc/*' --exclude='/sys/*' / /nfs
 ``` shell
 rm -f /nfs/etc/sysconfig/network-script/ifcfg-ens*
 ```
-
 安装好系统文件后配置计算节点的挂载配置,修改/nfs/etc/fstab:
 ```
 # none    /tmp        tmpfs   defaults    0 0 
@@ -156,7 +165,6 @@ proc    /proc       proc    defaults    0 0
 172.25.2.101:/nfs   /    nfs defaults,rsize=32768,wsize=32768,intr   1 1
 172.25.2.101:/mnt   /mnt nfs defaults,rsize=32768,wsize=32768,intr   1 2
 ```
-
 ### 设置计算节点启动内核
 复制本机vmlinuz文件到/srv/tftp目录,计算节点DHCP获取到IP后会从这里通过tftp下载:
 ``` shell
@@ -167,6 +175,7 @@ $ cp /boot/vmlinuz-<VMLINUZ-VERSION>.el7.x86_64 /srv/tftp
 $ dracut --add nfs /srv/tftp/initramfs-<VMLINUZ-VERSION>.el7.x86_64.img <VMLINUZ-VERSION>.el7.x86_64
 $ chmod 644 /srv/tftp/initramfs-<VMLINUZ-VERSION>.el7.x86_64.img
 ```
+上面的方法可能会出现诡异的问题,如果上面的方法不行,直接从源下载相应的[pxeboot文件](https://mirrors.tuna.tsinghua.edu.cn/centos/7.9.2009/os/x86_64/images/pxeboot/).
 
 ### 设置计算节点PXE引导文件
 复制/usr/share/syslinux/pxelinux.0文件和vesamenu.c32到/srv/tftp目录:
@@ -265,6 +274,11 @@ $ systemctl enable rc-local
 $ exit # ^D
 ```
 ### 后记
+最后不要忘记修改计算节点root密码:
+``` shell
+$ chroot /nfs
+$ passwd
+```
 其他的内容包括Infiniband,CUDA等安装在此处不多做介绍.
 
 **相关资料:**
