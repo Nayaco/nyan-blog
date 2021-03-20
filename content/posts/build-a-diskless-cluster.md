@@ -108,9 +108,9 @@ dhcp-range=172.25.2.50,172.25.2.100,12h
 
 # If you’d like to have dnsmasq assign static IPs, bind the LAN computer's
 # NIC MAC address:
-dhcp-host=<MAC-S1>,s1,172.25.2.101
-dhcp-host=<MAC-S2>,s2,172.25.2.102
-dhcp-host=<MAC-S3>,s3,172.25.2.103
+dhcp-host=<MAC-S1>,s1,172.25.2.102
+dhcp-host=<MAC-S2>,s2,172.25.2.103
+dhcp-host=<MAC-S3>,s3,172.25.2.104
 ```
 ### 配置NFS相关服务
 ``` shell
