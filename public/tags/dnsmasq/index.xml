@@ -13,7 +13,7 @@
       <pubDate>Thu, 18 Mar 2021 13:42:04 +0800</pubDate>
       
       <guid>https://blog.nyanco.top/posts/build-a-diskless-cluster/</guid>
-      <description>Build a Diskless Cluster, Using NFS, DNSMASQ</description>
+      <description>Build a Diskless Cluster With PXE</description>
     </item>
     
   </channel>
