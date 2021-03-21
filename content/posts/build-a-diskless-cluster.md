@@ -2,7 +2,7 @@
 title: "Build a Diskless Cluster(Centos7)"
 date: 2021-03-18T13:42:04+08:00
 draft: false
-tags: ["NFS", "Linux", "PXE", "dnsmasq"]
+tags: ["Linux", "PXE"]
 summary: "Build a Diskless Cluster With PXE"
 ---
 

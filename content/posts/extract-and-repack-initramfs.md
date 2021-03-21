@@ -2,8 +2,8 @@
 title: "Unpack and Repack Initramfs"
 date: 2021-03-21T14:16:16+08:00
 draft: false
-tags: []
-summary: ""
+tags: [”Linux“]
+summary: "Unpack a initramfs and figure out what it does :eggplant: :eggplant: :eggplant:"
 ---
 
 initramfs是一种嵌入在操作系统内核中的根文件系统(root filesystem),在boot的早期阶段就会载入,里面包含了完全启动系统所需的工具和文件.initramfs在完全启动后实际上并不会从内存中消失,这个[文件系统](https://www.linuxquestions.org/questions/linux-general-1/accessing-initrd-in-memory-after-boot-4175614932/?__cf_chl_jschl_tk__=3c085e1f32f31adec75525faf41b83178d0570bf-1616311609-0-AZj1LlCJkO4bsxNQm6gOccAtGIycIS-KJciOF3RCF59fzEWG7Su66dIdVpcN6QhWDBVODWFtm6aqPle4SIiL2JwLkR8uI-lvknKzG96qyNR75hCNjjugSDsnqL-qY4KpE5KIIT5cmsvL4sd3fr3D1DdL5gpux9MIhwPKKDBxfH_eS5ORM2PP_WfjZabU7fx_A1hjkeAvEhRJSrtF_vkTMDnd3a0QiGT1oPZUlcsVBx0bh1iE8jqgLjx61EojkBLuuZbnd_vXNBp5xHY_XmhBh02jZbQBEsvH2-1UvKg6r9R6BclHuql1lQuMoIS6NQLm4PPj45Bz0FBh1B6qRr-lP-JmMCmjBbOHLSamXaM8MjMATJC-ZlgpCr-iTc4YhRQ7_9eHFekwVue-j2RKoDjqbY8mHqKlbskrfBrsoZoxO-gsgoksBXK9BG0_McLpJykGyHsxD5izmOn1Hk_v5cmYZmeISBxrTAy5C7xvMt2RHDUr)位于/dev/initrd之类的设备下,虽然并没有找到.

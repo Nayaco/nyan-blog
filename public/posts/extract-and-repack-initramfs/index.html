@@ -13,24 +13,14 @@
     
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Unpack and Repack Initramfs"/>
-<meta name="twitter:description" content="initramfs是一种嵌入在操作系统内核中的根文件系统(root filesystem),在boot的早期阶段就会载入,里面包含了完全启动系统所需的工具和文件.initramfs在完全启动后实际上并不会从内存中消失,这个文件系统位于/dev/initrd之类的设备下,虽然并没有找到.
-本文将拆解initrd/initramfs boot image,并粗略分析操作系统挂载内核后的启动过程(正确性存疑,看看就行).
-Unpack initramfs 我们以Archlinux boot目录下的initramfs-linux.img为例解包. 分析initramfs文件类型:
-$ file /boot/initramfs-linux /boot/initramfs-linux.img: Zstandard compressed data (v0.8&#43;), Dictionary ID: None 至此我们知道Arch的initramfs文件是一个zst压缩包，下一步很简单解压这个文件就可以:
-$ cp /boot/initramfs-linux.img ./initramfs-linux.img.zst &amp;&amp; zstd -d ./initramfs-linux.img.zst $ ls -lh -rwxr-xr-x 1 &lt;username&gt; &lt;group&gt; 11M Mar 21 01:40 initramfs-linux.img.zst -rwxr-xr-x 1 &lt;username&gt; &lt;group&gt; 32M Mar 21 01:40 initramfs-linux.img 我们这样就得到一个32MB的文件,也就是initramfs的本体,这个文件内的内容使用cpio提取:
-$ cpio --extract --make-directories --format=newc --no-absolute-filenames &lt; initramfs-linux.img $ ls -lh lrwxrwxrwx 1 &lt;username&gt; &lt;group&gt; 7 Mar 21 01:42 bin -&gt; usr/bin -rw-r--r-- 1 &lt;username&gt; &lt;group&gt; 2."/>
+<meta name="twitter:description" content="Unpack a initramfs and figure out what it does :eggplant: :eggplant: :eggplant:"/>
 
     <meta property="og:title" content="Unpack and Repack Initramfs" />
-<meta property="og:description" content="initramfs是一种嵌入在操作系统内核中的根文件系统(root filesystem),在boot的早期阶段就会载入,里面包含了完全启动系统所需的工具和文件.initramfs在完全启动后实际上并不会从内存中消失,这个文件系统位于/dev/initrd之类的设备下,虽然并没有找到.
-本文将拆解initrd/initramfs boot image,并粗略分析操作系统挂载内核后的启动过程(正确性存疑,看看就行).
-Unpack initramfs 我们以Archlinux boot目录下的initramfs-linux.img为例解包. 分析initramfs文件类型:
-$ file /boot/initramfs-linux /boot/initramfs-linux.img: Zstandard compressed data (v0.8&#43;), Dictionary ID: None 至此我们知道Arch的initramfs文件是一个zst压缩包，下一步很简单解压这个文件就可以:
-$ cp /boot/initramfs-linux.img ./initramfs-linux.img.zst &amp;&amp; zstd -d ./initramfs-linux.img.zst $ ls -lh -rwxr-xr-x 1 &lt;username&gt; &lt;group&gt; 11M Mar 21 01:40 initramfs-linux.img.zst -rwxr-xr-x 1 &lt;username&gt; &lt;group&gt; 32M Mar 21 01:40 initramfs-linux.img 我们这样就得到一个32MB的文件,也就是initramfs的本体,这个文件内的内容使用cpio提取:
-$ cpio --extract --make-directories --format=newc --no-absolute-filenames &lt; initramfs-linux.img $ ls -lh lrwxrwxrwx 1 &lt;username&gt; &lt;group&gt; 7 Mar 21 01:42 bin -&gt; usr/bin -rw-r--r-- 1 &lt;username&gt; &lt;group&gt; 2." />
+<meta property="og:description" content="Unpack a initramfs and figure out what it does :eggplant: :eggplant: :eggplant:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.nyanco.top/posts/extract-and-repack-initramfs/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-03-21T14:16:16&#43;08:00" />
-<meta property="article:modified_time" content="2021-03-21T21:47:37&#43;08:00" />
+<meta property="article:modified_time" content="2021-03-21T21:50:27&#43;08:00" />
 
 
 
@@ -87,6 +77,12 @@ $ cpio --extract --make-directories --format=newc --no-absolute-filenames &lt; i
   <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
 </svg>
           3 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
         </div>
       </div>
     </header>
