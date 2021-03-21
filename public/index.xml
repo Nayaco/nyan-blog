@@ -8,15 +8,14 @@
     <language>zh-cn</language>
     <lastBuildDate>Sun, 21 Mar 2021 14:16:16 +0800</lastBuildDate><atom:link href="https://blog.nyanco.top/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Extract and Repack Initramfs</title>
+      <title>Unpack and Repack Initramfs</title>
       <link>https://blog.nyanco.top/posts/extract-and-repack-initramfs/</link>
       <pubDate>Sun, 21 Mar 2021 14:16:16 +0800</pubDate>
       
       <guid>https://blog.nyanco.top/posts/extract-and-repack-initramfs/</guid>
-      <description>本文将拆解initrd/initramfs boot image,并介绍操作系统挂载内核后的启动过程.
-initramfs是一种嵌入在操作系统内核中的根文件系统(root filesystem),在boot的早期阶段就会载入.
-initramfs在完全启动后实际上并不会从内存中消失,道理上这个文件系统会位于/dev/initrd之类的设备下,但是并没有找到这个文件.
-拆解initramfs 我们以Archlinux boot目录下的initramfs-linux.img为例解包. 分析initramfs文件类型:
+      <description>initramfs是一种嵌入在操作系统内核中的根文件系统(root filesystem),在boot的早期阶段就会载入,里面包含了完全启动系统所需的工具和文件.initramfs在完全启动后实际上并不会从内存中消失,这个文件系统位于/dev/initrd之类的设备下,虽然并没有找到.
+本文将拆解initrd/initramfs boot image,并粗略分析操作系统挂载内核后的启动过程(正确性存疑,看看就行).
+Unpack initramfs 我们以Archlinux boot目录下的initramfs-linux.img为例解包. 分析initramfs文件类型:
 $ file /boot/initramfs-linux /boot/initramfs-linux.img: Zstandard compressed data (v0.8+), Dictionary ID: None 至此我们知道Arch的initramfs文件是一个zst压缩包，下一步很简单解压这个文件就可以:
 $ cp /boot/initramfs-linux.img ./initramfs-linux.img.zst &amp;amp;&amp;amp; zstd -d ./initramfs-linux.img.zst $ ls -lh -rwxr-xr-x 1 &amp;lt;username&amp;gt; &amp;lt;group&amp;gt; 11M Mar 21 01:40 initramfs-linux.img.zst -rwxr-xr-x 1 &amp;lt;username&amp;gt; &amp;lt;group&amp;gt; 32M Mar 21 01:40 initramfs-linux.img 我们这样就得到一个32MB的文件,也就是initramfs的本体,这个文件内的内容使用cpio提取:
 $ cpio --extract --make-directories --format=newc --no-absolute-filenames &amp;lt; initramfs-linux.img $ ls -lh lrwxrwxrwx 1 &amp;lt;username&amp;gt; &amp;lt;group&amp;gt; 7 Mar 21 01:42 bin -&amp;gt; usr/bin -rw-r--r-- 1 &amp;lt;username&amp;gt; &amp;lt;group&amp;gt; 2.</description>
