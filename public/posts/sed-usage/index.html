@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="zh-cn">
+  <head>
+    <title>Sed Usage // NyanC&#39;s Blog</title>
+    <link rel="shortcut icon" href="/images/github.png" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.81.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="NyanC" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://blog.nyanco.top/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Sed Usage"/>
+<meta name="twitter:description" content="sed是一个流编辑器(Stream editor), 流编辑器用于对输入流（文件或来自管道的输入）执行基本的文本转换. 尽管在某种程度上类似于允许脚本化编辑的编辑器(例如ed). 但sed仅对输入进行一次传递即可工作, 因此效率更高. 但是, 它具有sed在管道中过滤文本的能力, 这使其与其他类型的编辑器特别有区别.
+Basic Syntax &amp; Workflow sed命令有两种基本写法:
+$ sed [-n] [-e] &#39;command(s)&#39; files $ sed [-n] -f scriptfile files -n的意思和--quiet是一样的, 就显示处理后的结果. 一般脚本中需要流编辑的时候就会加上这条参数.
+-e就是--expression后面接表达式, 字面理解就可以.
+表达式的常用动作:
+ a: append c: replace(和s的取代不同, 不是接表达式, 是按行取代) d: delete i: insert p: print s: replace  Sed命令的workflow如下:
+read 1 line -&gt; excute line -&gt; display line 说白了就是按行执行的方式.
+本文中使用的样例输入如下:
+1) A Storm of Swords, George R. R. Martin, 1216 2) The Two Towers, J."/>
+
+    <meta property="og:title" content="Sed Usage" />
+<meta property="og:description" content="sed是一个流编辑器(Stream editor), 流编辑器用于对输入流（文件或来自管道的输入）执行基本的文本转换. 尽管在某种程度上类似于允许脚本化编辑的编辑器(例如ed). 但sed仅对输入进行一次传递即可工作, 因此效率更高. 但是, 它具有sed在管道中过滤文本的能力, 这使其与其他类型的编辑器特别有区别.
+Basic Syntax &amp; Workflow sed命令有两种基本写法:
+$ sed [-n] [-e] &#39;command(s)&#39; files $ sed [-n] -f scriptfile files -n的意思和--quiet是一样的, 就显示处理后的结果. 一般脚本中需要流编辑的时候就会加上这条参数.
+-e就是--expression后面接表达式, 字面理解就可以.
+表达式的常用动作:
+ a: append c: replace(和s的取代不同, 不是接表达式, 是按行取代) d: delete i: insert p: print s: replace  Sed命令的workflow如下:
+read 1 line -&gt; excute line -&gt; display line 说白了就是按行执行的方式.
+本文中使用的样例输入如下:
+1) A Storm of Swords, George R. R. Martin, 1216 2) The Two Towers, J." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.nyanco.top/posts/sed-usage/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-03-22T00:51:34&#43;08:00" />
+<meta property="article:modified_time" content="2021-03-31T16:03:44&#43;08:00" />
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://blog.nyanco.top"><img class="app-header-avatar" src="/images/avatar.jpg" alt="NyanC" /></a>
+      <h1>NyanC&#39;s Blog</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/about/">About</a>
+      </nav>
+      <p>At least I was a Big Dreamer.</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/Nayaco" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>Github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+          </a>
+        
+          <a href="/index.xml" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-rss">
+  <title>RSS</title>
+  <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+</svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Sed Usage</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Mar 22, 2021
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          3 min read
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p><code>sed</code>是一个流编辑器(Stream editor), 流编辑器用于对输入流（文件或来自管道的输入）执行基本的文本转换. 尽管在某种程度上类似于允许脚本化编辑的编辑器(例如ed). 但<code>sed</code>仅对输入进行一次传递即可工作, 因此效率更高. 但是, 它具有sed在管道中过滤文本的能力, 这使其与其他类型的编辑器特别有区别.</p>
+<h3 id="basic-syntax--workflow">Basic Syntax &amp; Workflow</h3>
+<p>sed命令有两种基本写法:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ sed <span class="o">[</span>-n<span class="o">]</span> <span class="o">[</span>-e<span class="o">]</span> <span class="s1">&#39;command(s)&#39;</span> files 
+$ sed <span class="o">[</span>-n<span class="o">]</span> -f scriptfile files
+</code></pre></div><p><code>-n</code>的意思和<code>--quiet</code>是一样的, 就显示处理后的结果. 一般脚本中需要流编辑的时候就会加上这条参数.</p>
+<p><code>-e</code>就是<code>--expression</code>后面接表达式, 字面理解就可以.</p>
+<p>表达式的常用动作:</p>
+<ul>
+<li>a: append</li>
+<li>c: replace(和s的取代不同, 不是接表达式, 是按行取代)</li>
+<li>d: delete</li>
+<li>i: insert</li>
+<li>p: print</li>
+<li>s: replace</li>
+</ul>
+<p>Sed命令的workflow如下:</p>
+<pre><code>read 1 line -&gt; excute line -&gt; display line
+</code></pre><p>说白了就是按行执行的方式.</p>
+<p>本文中使用的样例输入如下:</p>
+<pre><code>1) A Storm of Swords, George R. R. Martin, 1216 
+2) The Two Towers, J. R. R. Tolkien, 352 
+3) The Alchemist, Paulo Coelho, 197 
+4) The Fellowship of the Ring, J. R. R. Tolkien, 432 
+5) The Pilgrimage, Paulo Coelho, 288 
+6) A Game of Thrones, George R. R. Martin, 864
+</code></pre><h3 id="commands">Commands</h3>
+<ul>
+<li>Delete Command
+删除命令</li>
+</ul>
+<pre><code>[address1[,address2]|expr]d
+</code></pre><p>删除从address1到address2之间的内容, 如果不指定address2, 则仅删除address1的内容.</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ sed <span class="s1">&#39;4d&#39;</span> book.txt
+1<span class="o">)</span> A Storm of Swords, George R. R. Martin, <span class="m">1216</span> 
+2<span class="o">)</span> The Two Towers, J. R. R. Tolkien, <span class="m">352</span> 
+3<span class="o">)</span> The Alchemist, Paulo Coelho, <span class="m">197</span> 
+5<span class="o">)</span> The Pilgrimage, Paulo Coelho, <span class="m">288</span> 
+6<span class="o">)</span> A Game of Thrones, George R. R. Martin, <span class="m">864</span>
+$ sed <span class="s1">&#39;2,4d&#39;</span> book.txt 
+1<span class="o">)</span> A Storm of Swords, George R. R. Martin, <span class="m">1216</span> 
+5<span class="o">)</span> The Pilgrimage, Paulo Coelho, <span class="m">288</span> 
+6<span class="o">)</span> A Game of Thrones, George R. R. Martin, <span class="m">864</span>
+$ sed <span class="s1">&#39;d&#39;</span> book.txt
+</code></pre></div><p>特别, 上面的第三条命令表示全部删除.</p>
+<ul>
+<li>Read Command</li>
+</ul>
+<pre><code>[address]r file
+</code></pre><p>&ldquo;我们可以指示SED读取文件的内容并在特定条件匹配时显示它们.&rdquo;
+虽然感觉是有点不明所以的命令, 但是大概哪里有用吧.</p>
+<ul>
+<li>Write Command
+写入命令</li>
+</ul>
+<pre><code>[address1[,address2]|expr]w file
+</code></pre><p>将address1和address2之间的内容写入file中.</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ sed -n <span class="s1">&#39;w book.bak&#39;</span> book.txt 
+$ sed -n <span class="s1">&#39;2~2w book&#39;</span> book.txt
+$ sed -n -e <span class="s1">&#39;/Martin/ w Martin.txt&#39;</span> -e <span class="s1">&#39;/Paulo/ w Paulo.txt&#39;</span> book.txt
+$ sed -n <span class="s1">&#39;/Th*/w book.bak&#39;</span> book.txt
+</code></pre></div><p>这些命令可以自己写一写, 这里就不写出来了, 应该可以看懂我写的吧.</p>
+<ul>
+<li>Append Command
+在后面添加</li>
+</ul>
+<pre><code>[address|expr]a Text
+</code></pre><p>在address后面添加Text内容.</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ sed <span class="s1">&#39;$a\ \ 7) NewlineXD&#39;</span> book.txt
+1<span class="o">)</span> A Storm of Swords, George R. R. Martin, <span class="m">1216</span>
+...
+6<span class="o">)</span> A Game of Thrones, George R. R. Martin, <span class="m">864</span>
+  7<span class="o">)</span> NewlineXD
+</code></pre></div><p><code>$</code>字符表示最后一行, 第一行的话就用数字1表示就可以了.</p>
+<ul>
+<li>
+<p>Insert Command
+Insert命令和Append差不多, 不解释了跳过.</p>
+</li>
+<li>
+<p>Change Command
+按行替换</p>
+</li>
+</ul>
+<pre><code>[address1[,address2]|expr]c Replace Text
+</code></pre><p>把address改为相应内容.</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ sed <span class="s1">&#39;/\(The\|Storm\)/c Balabala&#39;</span> book.txt
+Balabala
+...
+Balabala
+6<span class="o">)</span> A Game of Thrones, George R. R. Martin, <span class="m">864</span>
+</code></pre></div><p>可以使用正则去匹配行, 匹配结果按行表示.</p>
+<ul>
+<li>Translate Command
+翻译</li>
+</ul>
+<pre><code>[address1[,address2]]y/list-1/list-2/
+</code></pre><p>翻译命令必须要求list-1和list-2长度相同, 同时不支持正则表达式和字符类型.</p>
+<pre><code>$ echo &quot;1 5 15 20&quot; | sed 'y/151520/IVXVXX/' 
+I V IV XX 
+</code></pre><ul>
+<li>L Command
+L命令用于转义文本中的不可见字符, 比如\t, $, 当然也是按行执行的.</li>
+</ul>
+<pre><code>[address1 [，address2]] l 
+[address1 [，address2]] l [len]
+</code></pre><p>下面那种写法Len表示输出多少字符后换行(wrapping).</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ sed -n <span class="s1">&#39;s/ /\t/g;l 30&#39;</span> book.txt
+1<span class="o">)</span><span class="se">\t</span>A<span class="se">\t</span>Storm<span class="se">\t</span>of<span class="se">\t</span>Swords,<span class="se">\t</span>Ge<span class="se">\
+</span><span class="se"></span>orge<span class="se">\t</span>R.<span class="se">\t</span>R.<span class="se">\t</span>Martin,<span class="se">\t</span>1216<span class="se">\t</span>$
+2<span class="o">)</span><span class="se">\t</span>The<span class="se">\t</span>Two<span class="se">\t</span>Towers,<span class="se">\t</span>J.<span class="se">\t</span>R.<span class="se">\
+</span><span class="se">\t</span>R.<span class="se">\t</span>Tolkien,<span class="se">\t</span>352<span class="se">\t</span>$
+3<span class="o">)</span><span class="se">\t</span>The<span class="se">\t</span>Alchemist,<span class="se">\t</span>Paulo<span class="se">\t</span>C<span class="se">\
+</span><span class="se"></span>oelho,<span class="se">\t</span>197<span class="se">\t</span>$
+4<span class="o">)</span><span class="se">\t</span>The<span class="se">\t</span>Fellowship<span class="se">\t</span>of<span class="se">\t</span>the<span class="se">\
+</span><span class="se">\t</span>Ring,<span class="se">\t</span>J.<span class="se">\t</span>R.<span class="se">\t</span>R.<span class="se">\t</span>Tolkien,<span class="se">\
+</span><span class="se">\t</span>432<span class="se">\t</span>$
+5<span class="o">)</span><span class="se">\t</span>The<span class="se">\t</span>Pilgrimage,<span class="se">\t</span>Paulo<span class="se">\t\
+</span><span class="se"></span>Coelho,<span class="se">\t</span>288<span class="se">\t</span>$
+6<span class="o">)</span><span class="se">\t</span>A<span class="se">\t</span>Game<span class="se">\t</span>of<span class="se">\t</span>Thrones,<span class="se">\t</span>Ge<span class="se">\
+</span><span class="se"></span>orge<span class="se">\t</span>R.<span class="se">\t</span>R.<span class="se">\t</span>Martin,<span class="se">\t</span>864$
+</code></pre></div><ul>
+<li>Quit Command
+Quit</li>
+</ul>
+<pre><code>[address]q 
+[address]q [value]
+</code></pre><p>匹配到address就退出value是返回码, 没什么好说的跳过.</p>
+<ul>
+<li>Execute Command
+执行外部命令</li>
+</ul>
+<pre><code>[address1[,address2]]e [command]
+</code></pre><p>比如我们想知道sed执行一行东西需要多少时间我们可以</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ sed <span class="s1">&#39;e date +%s.%N&#39;</span> book.txt
+1617173673.715913570
+1<span class="o">)</span> A Storm of Swords, George R. R. Martin, <span class="m">1216</span> 
+1617173673.722971126
+2<span class="o">)</span> The Two Towers, J. R. R. Tolkien, <span class="m">352</span> 
+1617173673.729997560
+3<span class="o">)</span> The Alchemist, Paulo Coelho, <span class="m">197</span> 
+1617173673.736437244
+4<span class="o">)</span> The Fellowship of the Ring, J. R. R. Tolkien, <span class="m">432</span> 
+1617173673.742550613
+5<span class="o">)</span> The Pilgrimage, Paulo Coelho, <span class="m">288</span> 
+1617173673.748491791
+6<span class="o">)</span> A Game of Thrones, George R. R. Martin, <span class="m">864</span>
+</code></pre></div><p>这样就知道一行运行5ms, 当然也可以有其他的语法, 比如直接不加command, sed就会认为缓冲区的内容就是外部命令.</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ <span class="nb">echo</span> <span class="s1">&#39;cal&#39;</span> <span class="p">|</span> sed <span class="s1">&#39;e&#39;</span>
+     March <span class="m">2021</span>     
+Su Mo Tu We Th Fr Sa
+    <span class="m">1</span>  <span class="m">2</span>  <span class="m">3</span>  <span class="m">4</span>  <span class="m">5</span>  <span class="m">6</span>
+ <span class="m">7</span>  <span class="m">8</span>  <span class="m">9</span> <span class="m">10</span> <span class="m">11</span> <span class="m">12</span> <span class="m">13</span>
+<span class="m">14</span> <span class="m">15</span> <span class="m">16</span> <span class="m">17</span> <span class="m">18</span> <span class="m">19</span> <span class="m">20</span>
+<span class="m">21</span> <span class="m">22</span> <span class="m">23</span> <span class="m">24</span> <span class="m">25</span> <span class="m">26</span> <span class="m">27</span>
+<span class="m">28</span> <span class="m">29</span> <span class="m">30</span> <span class="m">31</span> 
+</code></pre></div><p>上述命令和直接cal没什么区别,除了不能输出shell的颜色以外, 不过pipe也不会吧颜色这些字符传过去就是了.</p>
+<ul>
+<li>Miscellaneous Commands
+N命令用来表示Next, n也是next, 不过N不清空缓冲区罢了, 而是将下一行直接接到当前行上</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ seq <span class="m">10</span> <span class="p">|</span> sed -n <span class="s1">&#39;/3/{n;p}&#39;</span>
+<span class="m">4</span>
+$ seq <span class="m">10</span> <span class="p">|</span> sed -n <span class="s1">&#39;/3/{N;p}&#39;</span>
+<span class="m">3</span>
+<span class="m">4</span>
+</code></pre></div><p>还有像v命令用来匹配当前sed版本, 感觉没什么用的命令, 比如当前是sed-4.8:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ sed <span class="s1">&#39;v 4.9&#39;</span> book.txt
+sed: -e expression <span class="c1">#1, char 5: expected newer version of sed</span>
+</code></pre></div>
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+<script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<style>
+  .hljs {
+    background: rgb(238, 234, 234);
+  }
+</style>
+
+<HR style= " FILTER: alpha (opacity = 0, finishopacity =100 , style= 1 )" width ="100%" color =#BBB cb 10 SIZE = 3>
+<div class="footer container-xl width-full p-responsive">
+    <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0" style="list-style: none;">
+        
+        <li class="mr-3 mr-lg-0">
+        <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" style="margin-right: 0.5em;"href="https://blog.nyanco.top">
+            <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+            <path fill-rule="evenodd"
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+            </path>
+            </svg>
+        </a>
+        Theme by <a href='https://github.com/vaga/hugo-theme-m10c'>m10c</a> & <a href='https://github.com/Nayaco/nyan-blog'>nyan-blog</a>
+        </li>
+        
+    </ul>
+    </div>
+    <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+    </div>
+</div>  
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+  </body>
+</html>

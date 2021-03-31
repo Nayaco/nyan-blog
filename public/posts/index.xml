@@ -6,7 +6,24 @@
     <description>Recent content in Posts on NyanC&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 21 Mar 2021 14:16:16 +0800</lastBuildDate><atom:link href="https://blog.nyanco.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 22 Mar 2021 00:51:34 +0800</lastBuildDate><atom:link href="https://blog.nyanco.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sed Usage</title>
+      <link>https://blog.nyanco.top/posts/sed-usage/</link>
+      <pubDate>Mon, 22 Mar 2021 00:51:34 +0800</pubDate>
+      
+      <guid>https://blog.nyanco.top/posts/sed-usage/</guid>
+      <description>sed是一个流编辑器(Stream editor), 流编辑器用于对输入流（文件或来自管道的输入）执行基本的文本转换. 尽管在某种程度上类似于允许脚本化编辑的编辑器(例如ed). 但sed仅对输入进行一次传递即可工作, 因此效率更高. 但是, 它具有sed在管道中过滤文本的能力, 这使其与其他类型的编辑器特别有区别.
+Basic Syntax &amp;amp; Workflow sed命令有两种基本写法:
+$ sed [-n] [-e] &amp;#39;command(s)&amp;#39; files $ sed [-n] -f scriptfile files -n的意思和--quiet是一样的, 就显示处理后的结果. 一般脚本中需要流编辑的时候就会加上这条参数.
+-e就是--expression后面接表达式, 字面理解就可以.
+表达式的常用动作:
+ a: append c: replace(和s的取代不同, 不是接表达式, 是按行取代) d: delete i: insert p: print s: replace  Sed命令的workflow如下:
+read 1 line -&amp;gt; excute line -&amp;gt; display line 说白了就是按行执行的方式.
+本文中使用的样例输入如下:
+1) A Storm of Swords, George R. R. Martin, 1216 2) The Two Towers, J.</description>
+    </item>
+    
     <item>
       <title>Unpack and Repack Initramfs</title>
       <link>https://blog.nyanco.top/posts/extract-and-repack-initramfs/</link>
