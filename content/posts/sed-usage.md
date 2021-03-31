@@ -44,7 +44,8 @@ read 1 line -> excute line -> display line
 
 ### Commands
 
-+ Delete Command
++ **Delete Command**
+
 删除命令
 ```
 [address1[,address2]|expr]d
@@ -66,14 +67,16 @@ $ sed 'd' book.txt
 ```
 特别, 上面的第三条命令表示全部删除.
 
-+ Read Command
++ **Read Command**
+
 ```
 [address]r file
 ```
 "我们可以指示SED读取文件的内容并在特定条件匹配时显示它们."
 虽然感觉是有点不明所以的命令, 但是大概哪里有用吧.
 
-+ Write Command
++ **Write Command**
+
 写入命令
 ```
 [address1[,address2]|expr]w file
@@ -87,7 +90,8 @@ $ sed -n '/Th*/w book.bak' book.txt
 ```
 这些命令可以自己写一写, 这里就不写出来了, 应该可以看懂我写的吧.
 
-+ Append Command
++ **Append Command**
+
 在后面添加
 ```
 [address|expr]a Text
@@ -104,7 +108,8 @@ $ sed '$a\ \ 7) NewlineXD' book.txt
 + Insert Command
 Insert命令和Append差不多, 不解释了跳过.
 
-+ Change Command
++ **Change Command**
+
 按行替换
 ```
 [address1[,address2]|expr]c Replace Text
@@ -119,7 +124,8 @@ Balabala
 ```
 可以使用正则去匹配行, 匹配结果按行表示.
 
-+ Translate Command
++ **Translate Command**
+
 翻译
 ```
 [address1[,address2]]y/list-1/list-2/
@@ -130,7 +136,8 @@ $ echo "1 5 15 20" | sed 'y/151520/IVXVXX/'
 I V IV XX 
 ```
 
-+ L Command
++ **L Command**
+
 L命令用于转义文本中的不可见字符, 比如\t, $, 当然也是按行执行的.
 ```
 [address1 [，address2]] l 
@@ -153,7 +160,8 @@ Coelho,\t288\t$
 6)\tA\tGame\tof\tThrones,\tGe\
 orge\tR.\tR.\tMartin,\t864$
 ```
-+ Quit Command
++ **Quit Command**
+
 Quit
 ```
 [address]q 
@@ -161,7 +169,8 @@ Quit
 ```
 匹配到address就退出value是返回码, 没什么好说的跳过.
 
-+ Execute Command
++ **Execute Command**
+
 执行外部命令
 ```
 [address1[,address2]]e [command]
@@ -195,7 +204,8 @@ Su Mo Tu We Th Fr Sa
 ```
 上述命令和直接cal没什么区别,除了不能输出shell的颜色以外, 不过pipe也不会吧颜色这些字符传过去就是了.
 
-+ Miscellaneous Commands
++ **Miscellaneous Commands**
+
 N命令用来表示Next, n也是next, 不过N不清空缓冲区罢了, 而是将下一行直接接到当前行上
 ``` shell
 $ seq 10 | sed -n '/3/{n;p}'
@@ -211,11 +221,49 @@ $ sed 'v 4.9' book.txt
 sed: -e expression #1, char 5: expected newer version of sed
 ```
 
+### Regular Expression
 
+sed可以采用正则匹配, 而且正则匹配功能很强, 使用正则匹配功能, sed几乎可以实现大部分文本处理应用的功能, 比如head grep什么的.
 
++ **Start of Line(^)**
 
+使用\^可以匹配行首
 
++ **End of Line($)**
 
+使用\$可以匹配行末
 
+上述两种正则匹配合起来可以匹配很多有用的东西, 比如说去掉空行:
 
+``` shell
+$ sed '/^$/d' file
+```
++ **Single(.)**
 
++ **Zero or One Occurrence(\\?)**
+
++ **One or More Occurrence(\\+)**
+
++ **Zero or More Occurrence(*)**
+
++ **N to \[M\] Occurrence(\\{N\[,M\]})** *有一说一M可以是空的,此时表示无上限*
+
+上述这些匹配规则都差不多都是用来匹配指定数目的字符.
+
++ **Pipe(|)**
+
+pipe表示或的意思, 用法`\(1\|3\)`
+
++ **Set(\[\])** 
++ **Exclusive Set(\[^\])** 
++ **Character Range(\[-\])**
+
+差不多的东西, 用法`[^a-z]`.
+
+### Words at Last
+
+本文是随感而发, 想到这个东西就随手写了一下, 大部分内容不是我自己写的(抄来的), 只是整理翻译了一下, 如果觉得看到过就跳过(以防有人阴阳怪气).  
+
+**相关资料:**
++ Sed Tutorial: [tutorialspoint.com/sed/index.htm](https://tutorialspoint.com/sed/index.htm)
++ Regular Expr: [gnu.org/software/sed/manual/html_node/Regular-Expressions.html](https://gnu.org/software/sed/manual/html_node/Regular-Expressions.html)
