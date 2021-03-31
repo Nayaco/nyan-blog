@@ -7,7 +7,17 @@ theme = "m10c"
 pygmentsCodeFences = true
 pygmentsUseClasses = true
 enableEmoji = true
-disqusShortname = "nyan-blog"
+# disqusShortname = "nyan-blog"
+
+[params.valine]
+    enable = true
+    appId = 'ri1SLKJpbyyESG14uQHiwDtc-gzGzoHsz'
+    appKey = '2MjdhHpp1yusSckOo8x7YVli'
+    notify = false  # mail notifier , https://github.com/xCss/Valine/wiki
+    verify = false # Verification code
+    avatar = 'monsterid'
+    placeholder = 'Comment Here...'
+    visitor = true
 [params]
   author = "NyanC"
   description = "At least I was a Big Dreamer."
@@ -27,7 +37,8 @@ disqusShortname = "nyan-blog"
     icon = "rss"
     name = "RSS"
     url = "/index.xml"
-  
+    
+
 [frontmatter]
   lastmod = ["lastmod", ":fileModTime", ":default"]
 

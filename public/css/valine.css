@@ -1,0 +1,78 @@
+/* .v *,
+.v .vwrap input,
+.v .vwrap input::placeholder,
+.v .veditor,
+.v .veditor::placeholder,
+.v a,
+.v a:hover {
+    color: hsla(0,0%,100%,.75);
+    opacity: 1;
+}
+.v .vbtn {
+    color: hsla(0,0%,100%,.75);
+    background: #333;
+    border: none;
+}
+.v .vbtn:hover {
+    color: #3090e4;
+    border-color: #3090e4;
+}
+.v .vlist .vcard .vhead .vsys {
+    background: #333;
+}
+.v code {
+    color: #fff;
+    background: #000;
+}
+.v .vlist .vcard .vcontent.expand:before {
+    background: linear-gradient(180deg,hsla(0,0%,20%,0),hsla(0, 0%, 20%, 0.9));
+}
+.v .vlist .vcard .vcontent.expand:after {
+    background: hsla(0, 0%, 20%, 0.9);
+} */
+
+
+#veditor {
+    /* background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-color: rgba(255, 255, 255, 0.712);
+    resize: vertical; */
+    color: #eeeae9;
+}
+
+#vcomments .vheader .vnick {
+    /* background-color: rgba(255, 255, 255, 0.712); */
+
+    /* border: 2px solid #dedede; */
+    color: #eeeae9;
+}
+
+#vcomments .vheader .vmail {
+    /* background-color: rgba(255, 255, 255, 0.712); */
+
+    /* border: 2px solid #dedede; */
+    color: #eeeae9;
+}
+
+#vcomments .vheader .vlink {
+    /* background-color: rgba(255, 255, 255, 0.712); */
+
+    /* border: 2px solid #dedede; */
+    color: #eeeae9;
+}
+
+#vcomments .vcards .vcard .vcontent {
+    color: #eeeae9;
+}
+
+#vcomments .v[data-class=v] .status-bar, .v[data-class=v] .veditor, .v[data-class=v] .vinput, .v[data-class=v] p, .v[data-class=v] pre code {
+    color: #eeeae9;
+}
+
+#vcomments .vsubmit.vbtn {
+    color: #eeeae9;    
+}
+#vcomments .vat {
+    color: #1abc9c;
+}
