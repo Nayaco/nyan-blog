@@ -7,6 +7,7 @@ theme = "m10c"
 pygmentsCodeFences = true
 pygmentsUseClasses = true
 enableEmoji = true
+disqusShortname = "nyan-blog"
 [params]
   author = "NyanC"
   description = "At least I was a Big Dreamer."
