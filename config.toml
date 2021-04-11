@@ -59,4 +59,9 @@ enableEmoji = true
     name = "About"
     url = "/about/"
     weight = 3
+  [[menu.main]]
+    identifier = "friends"
+    name = "Friends"
+    url = "/friends/"
+    weight = 3
 
