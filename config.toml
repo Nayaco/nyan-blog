@@ -1,6 +1,6 @@
 baseURL = "https://blog.nyanco.top"
 languageCode = "zh-cn"
-title = "NyanC's Blog"
+title = "NyanCの錬金工坊"
 # theme = "github-style"
 theme = "m10c"
 # googleAnalytics = "UA-123456-789"
@@ -9,15 +9,6 @@ pygmentsUseClasses = true
 enableEmoji = true
 # disqusShortname = "nyan-blog"
 
-[params.valine]
-    enable = true
-    appId = 'ri1SLKJpbyyESG14uQHiwDtc-gzGzoHsz'
-    appKey = '2MjdhHpp1yusSckOo8x7YVli'
-    notify = false  # mail notifier , https://github.com/xCss/Valine/wiki
-    verify = false # Verification code
-    avatar = 'monsterid'
-    placeholder = 'Comment Here...'
-    visitor = true
 [params]
   author = "NyanC"
   description = "At least I was a Big Dreamer."
@@ -29,19 +20,33 @@ enableEmoji = true
   favicon = "/images/github.png"
   location = "China"
   menu_item_separator = " - "
-  [[params.social]]
-    icon = "github"
-    name = "Github"
-    url = "https://github.com/Nayaco"
-  [[params.social]]
-    icon = "rss"
-    name = "RSS"
-    url = "/index.xml"
-    
+[[params.social]]
+  icon = "github"
+  name = "Github"
+  url = "https://github.com/Nayaco"
+[[params.social]]
+  icon = "rss"
+  name = "RSS"
+  url = "/index.xml"
+[params.style]
+  darkestColor = "#242930"
+  darkColor = "#353b43"
+  lightColor = "#afbac4"
+  lightestColor = "#ffffff"
+  primaryColor = "#1AD5FF"
+[params.valine]
+  enable = true
+  appId = 'ri1SLKJpbyyESG14uQHiwDtc-gzGzoHsz'
+  appKey = '2MjdhHpp1yusSckOo8x7YVli'
+  notify = false  # mail notifier , https://github.com/xCss/Valine/wiki
+  verify = false # Verification code
+  avatar = 'monsterid'
+  placeholder = 'Comment Here...'
+  visitor = true
+
 
 [frontmatter]
   lastmod = ["lastmod", ":fileModTime", ":default"]
-
 
 [menu]
   [[menu.main]]
@@ -64,4 +69,3 @@ enableEmoji = true
     name = "Friends"
     url = "/friends/"
     weight = 3
-
