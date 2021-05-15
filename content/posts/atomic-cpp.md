@@ -2,7 +2,7 @@
 title: "Atomic"
 date: 2021-04-10T22:24:10+08:00
 draft: false
-tags: [”C++“, "C++11"]
+tags: ["C++", "C++11"]
 summary: "What and How about a atomic variable, welcome to C++11"
 ---
 
