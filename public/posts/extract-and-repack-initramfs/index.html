@@ -4,7 +4,7 @@
     <title>Unpack and Repack Initramfs // NyanCの錬金工坊</title>
     <link rel="shortcut icon" href="/images/github.png" />
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.83.1" />
+    <meta name="generator" content="Hugo 0.104.2" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="NyanC" />
     <meta name="description" content="" />
@@ -19,8 +19,8 @@
 <meta property="og:description" content="Unpack a initramfs and figure out what it does" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.nyanco.top/posts/extract-and-repack-initramfs/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-03-21T14:16:16&#43;08:00" />
-<meta property="article:modified_time" content="2021-04-12T01:39:31&#43;08:00" />
+<meta property="article:published_time" content="2021-03-21T14:16:16+08:00" />
+<meta property="article:modified_time" content="2021-04-12T01:39:31+08:00" />
 
 
 
@@ -95,92 +95,92 @@
 <h3 id="unpack-initramfs">Unpack initramfs</h3>
 <p>我们以Archlinux boot目录下的initramfs-linux.img为例解包.
 分析initramfs文件类型:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ file /boot/initramfs-linux
-/boot/initramfs-linux.img: Zstandard compressed data <span class="o">(</span>v0.8+<span class="o">)</span>, Dictionary ID: None
-</code></pre></div><p>至此我们知道Arch的initramfs文件是一个zst压缩包，下一步很简单解压这个文件就可以:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ cp /boot/initramfs-linux.img ./initramfs-linux.img.zst <span class="o">&amp;&amp;</span> zstd -d ./initramfs-linux.img.zst
-$ ls -lh
--rwxr-xr-x  <span class="m">1</span> &lt;username&gt; &lt;group&gt; 11M Mar <span class="m">21</span> 01:40 initramfs-linux.img.zst
--rwxr-xr-x  <span class="m">1</span> &lt;username&gt; &lt;group&gt; 32M Mar <span class="m">21</span> 01:40 initramfs-linux.img
-</code></pre></div><p>我们这样就得到一个32MB的文件,也就是initramfs的本体,这个文件内的内容使用cpio提取:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ cpio --extract --make-directories --format<span class="o">=</span>newc --no-absolute-filenames &lt; initramfs-linux.img
-$ ls -lh
-lrwxrwxrwx <span class="m">1</span> &lt;username&gt; &lt;group&gt;    <span class="m">7</span> Mar <span class="m">21</span> 01:42 bin -&gt; usr/bin
--rw-r--r-- <span class="m">1</span> &lt;username&gt; &lt;group&gt; 2.5K Mar <span class="m">21</span> 01:42 buildconfig
--rw-r--r-- <span class="m">1</span> &lt;username&gt; &lt;group&gt;   <span class="m">79</span> Mar <span class="m">21</span> 01:42 config
-drwxr-xr-x <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 01:42 dev
-drwxr-xr-x <span class="m">3</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 01:42 etc
-drwxr-xr-x <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 01:42 hooks
--rwxr-xr-x <span class="m">1</span> &lt;username&gt; &lt;group&gt; 2.1K Mar <span class="m">21</span> 01:42 init
--rw-r--r-- <span class="m">1</span> &lt;username&gt; &lt;group&gt;  13K Mar <span class="m">21</span> 01:42 init_functions
-lrwxrwxrwx <span class="m">1</span> &lt;username&gt; &lt;group&gt;    <span class="m">7</span> Mar <span class="m">21</span> 01:42 lib -&gt; usr/lib
-lrwxrwxrwx <span class="m">1</span> &lt;username&gt; &lt;group&gt;    <span class="m">7</span> Mar <span class="m">21</span> 01:42 lib64 -&gt; usr/lib
-drwxr-xr-x <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 01:42 new_root
-drwxr-xr-x <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 01:42 proc
-drwxr-xr-x <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 01:42 run
-lrwxrwxrwx <span class="m">1</span> &lt;username&gt; &lt;group&gt;    <span class="m">7</span> Mar <span class="m">21</span> 01:42 sbin -&gt; usr/bin
-drwxr-xr-x <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 01:42 sys
-drwxr-xr-x <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 01:42 tmp
-drwxr-xr-x <span class="m">5</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 01:42 usr
-drwxr-xr-x <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 01:42 var
--rw-r--r-- <span class="m">1</span> &lt;username&gt; &lt;group&gt;    <span class="m">2</span> Mar <span class="m">21</span> 01:42 VERSION
-</code></pre></div><p>(眼熟)WDNMD,DNA动了,我不玩了🍆 🍆 🍆.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ file /boot/initramfs-linux
+</span></span><span class="line"><span class="cl">/boot/initramfs-linux.img: Zstandard compressed data <span class="o">(</span>v0.8+<span class="o">)</span>, Dictionary ID: None
+</span></span></code></pre></div><p>至此我们知道Arch的initramfs文件是一个zst压缩包，下一步很简单解压这个文件就可以:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ cp /boot/initramfs-linux.img ./initramfs-linux.img.zst <span class="o">&amp;&amp;</span> zstd -d ./initramfs-linux.img.zst
+</span></span><span class="line"><span class="cl">$ ls -lh
+</span></span><span class="line"><span class="cl">-rwxr-xr-x  <span class="m">1</span> &lt;username&gt; &lt;group&gt; 11M Mar <span class="m">21</span> 01:40 initramfs-linux.img.zst
+</span></span><span class="line"><span class="cl">-rwxr-xr-x  <span class="m">1</span> &lt;username&gt; &lt;group&gt; 32M Mar <span class="m">21</span> 01:40 initramfs-linux.img
+</span></span></code></pre></div><p>我们这样就得到一个32MB的文件,也就是initramfs的本体,这个文件内的内容使用cpio提取:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ cpio --extract --make-directories --format<span class="o">=</span>newc --no-absolute-filenames &lt; initramfs-linux.img
+</span></span><span class="line"><span class="cl">$ ls -lh
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> &lt;username&gt; &lt;group&gt;    <span class="m">7</span> Mar <span class="m">21</span> 01:42 bin -&gt; usr/bin
+</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> &lt;username&gt; &lt;group&gt; 2.5K Mar <span class="m">21</span> 01:42 buildconfig
+</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> &lt;username&gt; &lt;group&gt;   <span class="m">79</span> Mar <span class="m">21</span> 01:42 config
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 01:42 dev
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">3</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 01:42 etc
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 01:42 hooks
+</span></span><span class="line"><span class="cl">-rwxr-xr-x <span class="m">1</span> &lt;username&gt; &lt;group&gt; 2.1K Mar <span class="m">21</span> 01:42 init
+</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> &lt;username&gt; &lt;group&gt;  13K Mar <span class="m">21</span> 01:42 init_functions
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> &lt;username&gt; &lt;group&gt;    <span class="m">7</span> Mar <span class="m">21</span> 01:42 lib -&gt; usr/lib
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> &lt;username&gt; &lt;group&gt;    <span class="m">7</span> Mar <span class="m">21</span> 01:42 lib64 -&gt; usr/lib
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 01:42 new_root
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 01:42 proc
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 01:42 run
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> &lt;username&gt; &lt;group&gt;    <span class="m">7</span> Mar <span class="m">21</span> 01:42 sbin -&gt; usr/bin
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 01:42 sys
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 01:42 tmp
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">5</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 01:42 usr
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 01:42 var
+</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> &lt;username&gt; &lt;group&gt;    <span class="m">2</span> Mar <span class="m">21</span> 01:42 VERSION
+</span></span></code></pre></div><p>(眼熟)WDNMD,DNA动了,我不玩了🍆 🍆 🍆.</p>
 <p>/init文件是挂载内核后第一个调用的脚本,第一行
 <code>#!/usr/bin/ash</code>
 说明这个文件是用ash运行的,ash又是什么呢,看一下文件类型:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ file usr/bin/ash 
-usr/bin/ash: symbolic link to busybox
-</code></pre></div><p>Ash(Almquist shell)实际上是包含在busybox中的一个mininal shell.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ file usr/bin/ash 
+</span></span><span class="line"><span class="cl">usr/bin/ash: symbolic link to busybox
+</span></span></code></pre></div><p>Ash(Almquist shell)实际上是包含在busybox中的一个mininal shell.</p>
 <p>Busybox是个挺神奇的应用,可以理解为一个捆绑了一堆应用的应用,调用内部命令的方式主要有两个:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ busybox <span class="o">[</span>Function<span class="o">]</span>
-</code></pre></div><p>或者使用symbol/hard link链接到busybox,busybox会根据arg[0]的内容决定调用内部应用.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ busybox <span class="o">[</span>Function<span class="o">]</span>
+</span></span></code></pre></div><p>或者使用symbol/hard link链接到busybox,busybox会根据arg[0]的内容决定调用内部应用.</p>
 <p>以上说的仅仅是Archlinux官方initramfs中的内容和/init文件的形式,如果是Centos PXE Boot版本的initrd.img,其中的内容则完全不同,/init文件也不再是一个busybox脚本:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ xz -dc &lt; ./initrd.img <span class="p">|</span> cpio -idmv
-$ ls -lh
-lrwxrwxrwx  <span class="m">1</span> &lt;username&gt; &lt;group&gt;    <span class="m">7</span> Mar <span class="m">21</span> 20:59 bin -&gt; usr/bin
--rw-r--r--  <span class="m">1</span> &lt;username&gt; &lt;group&gt;  <span class="m">149</span> Oct <span class="m">27</span> 00:11 .buildstamp
-drwxr-xr-x  <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Oct <span class="m">27</span> 00:23 dev
-drwxr-xr-x <span class="m">14</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 20:59 etc
-lrwxrwxrwx  <span class="m">1</span> &lt;username&gt; &lt;group&gt;   <span class="m">23</span> Mar <span class="m">21</span> 20:59 init -&gt; usr/lib/systemd/systemd
-lrwxrwxrwx  <span class="m">1</span> &lt;username&gt; &lt;group&gt;    <span class="m">7</span> Mar <span class="m">21</span> 20:59 lib -&gt; usr/lib
-lrwxrwxrwx  <span class="m">1</span> &lt;username&gt; &lt;group&gt;    <span class="m">9</span> Mar <span class="m">21</span> 20:59 lib64 -&gt; usr/lib64
-drwxr-xr-x  <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Oct <span class="m">27</span> 00:23 proc
-drwxr-xr-x  <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Oct <span class="m">27</span> 00:23 root
-drwxr-xr-x  <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Oct <span class="m">27</span> 00:23 run
-lrwxrwxrwx  <span class="m">1</span> &lt;username&gt; &lt;group&gt;    <span class="m">8</span> Mar <span class="m">21</span> 20:59 sbin -&gt; usr/sbin
--rwxr-xr-x  <span class="m">1</span> &lt;username&gt; &lt;group&gt; 3.1K Sep <span class="m">30</span> 23:57 shutdown
-drwxr-xr-x  <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Oct <span class="m">27</span> 00:23 sys
-drwxr-xr-x  <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Oct <span class="m">27</span> 00:23 sysroot
-drwxr-xr-x  <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Oct <span class="m">27</span> 00:23 tmp
-drwxr-xr-x  <span class="m">9</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 20:59 usr
-drwxr-xr-x  <span class="m">3</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 20:59 var
-</code></pre></div><p>其中init文件指向的是systemd,甚至包含一个python2.7解释器.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ xz -dc &lt; ./initrd.img <span class="p">|</span> cpio -idmv
+</span></span><span class="line"><span class="cl">$ ls -lh
+</span></span><span class="line"><span class="cl">lrwxrwxrwx  <span class="m">1</span> &lt;username&gt; &lt;group&gt;    <span class="m">7</span> Mar <span class="m">21</span> 20:59 bin -&gt; usr/bin
+</span></span><span class="line"><span class="cl">-rw-r--r--  <span class="m">1</span> &lt;username&gt; &lt;group&gt;  <span class="m">149</span> Oct <span class="m">27</span> 00:11 .buildstamp
+</span></span><span class="line"><span class="cl">drwxr-xr-x  <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Oct <span class="m">27</span> 00:23 dev
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">14</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 20:59 etc
+</span></span><span class="line"><span class="cl">lrwxrwxrwx  <span class="m">1</span> &lt;username&gt; &lt;group&gt;   <span class="m">23</span> Mar <span class="m">21</span> 20:59 init -&gt; usr/lib/systemd/systemd
+</span></span><span class="line"><span class="cl">lrwxrwxrwx  <span class="m">1</span> &lt;username&gt; &lt;group&gt;    <span class="m">7</span> Mar <span class="m">21</span> 20:59 lib -&gt; usr/lib
+</span></span><span class="line"><span class="cl">lrwxrwxrwx  <span class="m">1</span> &lt;username&gt; &lt;group&gt;    <span class="m">9</span> Mar <span class="m">21</span> 20:59 lib64 -&gt; usr/lib64
+</span></span><span class="line"><span class="cl">drwxr-xr-x  <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Oct <span class="m">27</span> 00:23 proc
+</span></span><span class="line"><span class="cl">drwxr-xr-x  <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Oct <span class="m">27</span> 00:23 root
+</span></span><span class="line"><span class="cl">drwxr-xr-x  <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Oct <span class="m">27</span> 00:23 run
+</span></span><span class="line"><span class="cl">lrwxrwxrwx  <span class="m">1</span> &lt;username&gt; &lt;group&gt;    <span class="m">8</span> Mar <span class="m">21</span> 20:59 sbin -&gt; usr/sbin
+</span></span><span class="line"><span class="cl">-rwxr-xr-x  <span class="m">1</span> &lt;username&gt; &lt;group&gt; 3.1K Sep <span class="m">30</span> 23:57 shutdown
+</span></span><span class="line"><span class="cl">drwxr-xr-x  <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Oct <span class="m">27</span> 00:23 sys
+</span></span><span class="line"><span class="cl">drwxr-xr-x  <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Oct <span class="m">27</span> 00:23 sysroot
+</span></span><span class="line"><span class="cl">drwxr-xr-x  <span class="m">2</span> &lt;username&gt; &lt;group&gt; 4.0K Oct <span class="m">27</span> 00:23 tmp
+</span></span><span class="line"><span class="cl">drwxr-xr-x  <span class="m">9</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 20:59 usr
+</span></span><span class="line"><span class="cl">drwxr-xr-x  <span class="m">3</span> &lt;username&gt; &lt;group&gt; 4.0K Mar <span class="m">21</span> 20:59 var
+</span></span></code></pre></div><p>其中init文件指向的是systemd,甚至包含一个python2.7解释器.</p>
 <h3 id="init">Init</h3>
 <p>init脚本是内核启动后执行的首个一个命令,作用也非常简单,就是启用一些必需的kernel module并将真正的root挂载到新的root目录下然后转移到真正的root下.
 init最少要挂载root,甚至内核模块也不需要在这一步加载.</p>
 <p>这里从gentoo wiki上抄了一个mininalistic init example:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/bin/busybox sh
-</span><span class="cp"></span><span class="c1"># Mount the /proc and /sys filesystems.</span>
-mount -t proc none /proc
-mount -t sysfs none /sys
-
-<span class="c1"># Do your stuff here.</span>
-<span class="nb">echo</span> <span class="s2">&#34;This script just mounts and boots the rootfs, nothing else!&#34;</span>
-
-<span class="c1"># Mount the root filesystem.</span>
-mount -o ro /dev/sda1 /mnt/root
-
-<span class="c1"># Clean up.</span>
-umount /proc
-umount /sys
-
-<span class="c1"># Boot the real thing.</span>
-<span class="nb">exec</span> switch_root /mnt/root /sbin/init
-</code></pre></div><h3 id="repack-initramfs">Repack initramfs</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/bin/busybox sh
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1"># Mount the /proc and /sys filesystems.</span>
+</span></span><span class="line"><span class="cl">mount -t proc none /proc
+</span></span><span class="line"><span class="cl">mount -t sysfs none /sys
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Do your stuff here.</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;This script just mounts and boots the rootfs, nothing else!&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Mount the root filesystem.</span>
+</span></span><span class="line"><span class="cl">mount -o ro /dev/sda1 /mnt/root
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Clean up.</span>
+</span></span><span class="line"><span class="cl">umount /proc
+</span></span><span class="line"><span class="cl">umount /sys
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Boot the real thing.</span>
+</span></span><span class="line"><span class="cl"><span class="nb">exec</span> switch_root /mnt/root /sbin/init
+</span></span></code></pre></div><h3 id="repack-initramfs">Repack initramfs</h3>
 <p>打包initramfs非常简单,这样那样就好了:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ find . 2&gt;/dev/null <span class="p">|</span> cpio -o -c -R root:root &gt; initramfs-new.img
-$ zstd initramfs-new.img -o initramfs_new.img
-</code></pre></div><p>initramfs_new.img就是我们需要initramfs文件.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ find . 2&gt;/dev/null <span class="p">|</span> cpio -o -c -R root:root &gt; initramfs-new.img
+</span></span><span class="line"><span class="cl">$ zstd initramfs-new.img -o initramfs_new.img
+</span></span></code></pre></div><p>initramfs_new.img就是我们需要initramfs文件.</p>
 <p><strong>相关资料:</strong></p>
 <ul>
 <li>How to unpack/uncompress and repack/re-compress an initial ramdisk (initrd/initramfs) boot image file: <a href="https://access.redhat.com/solutions/24029">https://access.redhat.com/solutions/24029</a></li>
