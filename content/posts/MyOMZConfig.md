@@ -2,6 +2,7 @@
 title: "我的omz主题配置"
 date: 2022-10-08T18:08:15+08:00
 draft: false
+summary: "OMZ!!!!!"
 ---
 
 习惯了zsh就很难再习惯别的shell了2333.
