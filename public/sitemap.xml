@@ -2,11 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://blog.nyanco.top/tags/ml/</loc>
+    <lastmod>2022-10-20T11:26:52+08:00</lastmod>
+  </url><url>
     <loc>https://blog.nyanco.top/</loc>
-    <lastmod>2022-10-08T18:16:44+08:00</lastmod>
+    <lastmod>2022-10-20T11:26:52+08:00</lastmod>
   </url><url>
     <loc>https://blog.nyanco.top/posts/</loc>
-    <lastmod>2022-10-08T18:16:44+08:00</lastmod>
+    <lastmod>2022-10-20T11:26:52+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.nyanco.top/tags/</loc>
+    <lastmod>2022-10-20T11:26:52+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.nyanco.top/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2022-10-20T11:26:52+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.nyanco.top/posts/rl-1/</loc>
+    <lastmod>2022-10-20T11:26:52+08:00</lastmod>
   </url><url>
     <loc>https://blog.nyanco.top/posts/myomzconfig/</loc>
     <lastmod>2022-10-08T18:16:19+08:00</lastmod>
@@ -15,9 +27,6 @@
     <lastmod>2022-10-08T18:16:44+08:00</lastmod>
   </url><url>
     <loc>https://blog.nyanco.top/posts/asc21-1/</loc>
-    <lastmod>2022-10-08T18:16:44+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.nyanco.top/tags/</loc>
     <lastmod>2022-10-08T18:16:44+08:00</lastmod>
   </url><url>
     <loc>https://blog.nyanco.top/posts/asc21/</loc>
@@ -54,7 +63,7 @@
     <lastmod>2021-04-12T01:38:56+08:00</lastmod>
   </url><url>
     <loc>https://blog.nyanco.top/about/</loc>
-    <lastmod>2021-03-21T22:00:50+08:00</lastmod>
+    <lastmod>2022-10-18T17:45:11+08:00</lastmod>
   </url><url>
     <loc>https://blog.nyanco.top/categories/</loc>
   </url><url>
