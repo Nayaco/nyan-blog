@@ -12,7 +12,9 @@ summary: 强化学习学习笔记
 
 + Cumulative Discounted Future Reward
 
-$U_t = \sum_{n=0}^{...} \gamma^{n} R_{t+n}$
+$$
+U_t = \sum_{n=0}^{...} \gamma^{n} R_{t+n}
+$$
 
 Return UT 依赖于之后的状态S动作A
 
@@ -20,12 +22,13 @@ Return UT 依赖于之后的状态S动作A
 
 $\pi$是策略, 于是动作价值函数可以表达为
 
-$Q_\pi(s_t, a_t)=E[U_t|S_t=s_t, A_t=a_t]$
+$$Q_\pi(s_t, a_t)=E[U_t|S_t=s_t, A_t=a_t]$$
 
 取最大得到最优动作价值函数(optimal action-value function):
-$Q^*(s_t, a_t)=\max_{\pi}Q_\pi(s_t, a_t)$
 
-+ 最优动作$a^*=\argmax_aQ^*(s_t,a_t)$
+$$Q^*(s_t, a_t)=\max_{\pi}Q_\pi(s_t, a_t)$$
+
++ 最优动作$$a^*=\argmax_aQ^*(s_t,a_t)$$
 
 基于动作价值函数训练Q-function令$Q(s,a;w)\approx Q^*(s,a)$
 
@@ -33,7 +36,7 @@ $Q^*(s_t, a_t)=\max_{\pi}Q_\pi(s_t, a_t)$
 
 TD算法核心$T_{estimateOverall} \approx T_{realAtoMid} + T_{estimateMidtoB}$
 
-$\to Q(s_t,a_t;w) \approx r_t + \gamma Q(s_{t+1},a_{t+1};w)$
+$$\to Q(s_t,a_t;w) \approx r_t + \gamma Q(s_{t+1},a_{t+1};w)$$
 
 其中$r_t$为当前时刻价值的ground truth
 
@@ -58,16 +61,16 @@ $\pi(a|s)$输出为当前状态选择a的概率
 
 + 状态价值函数
 
-$V_\pi(s_t)=E_A[Q_\pi(s_t,A)]=\sum_a \pi(a|s_t) \cdot Q_\pi(s_t,a), \space (A \sim \pi(\cdot|s_t))$
+$$V_\pi(s_t)=E_A[Q_\pi(s_t,A)]=\sum_a \pi(a|s_t) \cdot Q_\pi(s_t,a), \space (A \sim \pi(\cdot|s_t))$$
 
-$V_\pi(s_t;\theta)=\sum_a \pi(a|s_t;\theta) \cdot Q_\pi(s_t,a)$
+$$V_\pi(s_t;\theta)=\sum_a \pi(a|s_t;\theta) \cdot Q_\pi(s_t,a)$$
 
 目标是最大化$J(\theta)=E_S[V_pi(S;\theta)]$, 这里采用策略梯度下降(不严谨推导--ShusenWang)
  
 + *采样s*
 + $\theta \larr \theta + \beta \frac{\partial V(s;\theta)}{\partial \theta}$
 
-    + $\frac{\partial V(s;\theta)}{\partial \theta} = \sum_a\frac{\partial \pi(a|s;\theta)}{\partial \theta}\cdot Q_\pi(s,a)=\sum_a\pi(a|s;\theta)\frac{\partial log\pi(a|s;\theta)}{\partial \theta}\cdot Q_\pi(s,a)=E_A[\frac{\partial log\pi(A|s;\theta)}{\partial \theta}\cdot Q_\pi(s,A)], Q_\pi \space independent \space with \space \theta$
+$$\frac{\partial V(s;\theta)}{\partial \theta} = \sum_a\frac{\partial \pi(a|s;\theta)}{\partial \theta}\cdot Q_\pi(s,a)=\sum_a\pi(a|s;\theta)\frac{\partial log\pi(a|s;\theta)}{\partial \theta}\cdot Q_\pi(s,a)=E_A[\frac{\partial log\pi(A|s;\theta)}{\partial \theta}\cdot Q_\pi(s,A)], Q_\pi \space independent \space with \space \theta$$
 
 对于连续变量采用蒙特卡罗近似近似上述期望
 
