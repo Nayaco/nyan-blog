@@ -18,7 +18,7 @@ $$
 
 Return UT 依赖于之后的状态S动作A
 
-+ 动作价值函数$Q_\pi$
++ 动作价值函数\\(Q_\pi\\)
 
 $\pi$是策略, 于是动作价值函数可以表达为
 
@@ -28,21 +28,21 @@ $$Q_\pi(s_t, a_t)=E[U_t|S_t=s_t, A_t=a_t]$$
 
 $$Q^*(s_t, a_t)=\max_{\pi}Q_\pi(s_t, a_t)$$
 
-+ 最优动作$$a^*=\argmax_aQ^*(s_t,a_t)$$
++ 最优动作\\(a^*=\argmax_aQ^*(s_t,a_t)\\)
 
-基于动作价值函数训练Q-function令$Q(s,a;w)\approx Q^*(s,a)$
+基于动作价值函数训练Q-function令\\(Q(s,a;w)\approx Q^*(s,a)\\)
 
 + 训练QDN: TD(Temporal Difference Learning)
 
-TD算法核心$T_{estimateOverall} \approx T_{realAtoMid} + T_{estimateMidtoB}$
+TD算法核心\\(T_{estimateOverall} \approx T_{realAtoMid} + T_{estimateMidtoB}\\)
 
 $$\to Q(s_t,a_t;w) \approx r_t + \gamma Q(s_{t+1},a_{t+1};w)$$
 
-其中$r_t$为当前时刻价值的ground truth
+其中\\(r_t\\)为当前时刻价值的ground truth
 
 该推论可通过折扣回报的展开得到, 公式来源于Q的自治条件
 
-TD的目标是让Q(s_t,a_t;w)无限接近于公式的后半部分
+TD的目标是让\\(Q(s_t,a_t;w)\\)无限接近于公式的后半部分
  
 $$
 y_r = r_t + \gamma Q(s_{t+1},a_{t+1};w)\\
@@ -55,9 +55,9 @@ $$
 ## 状态价值函数(基于策略)
 
 + 策略函数
-$\pi(a|s)$输出为当前状态选择a的概率
+\\(\pi(a|s)\\)输出为当前状态选择a的概率
 
-参数化策略函数$\pi(a|s;\theta)$ $\theta$是可训练参数
+参数化策略函数\\(\pi(a|s;\theta)\\) \\(\theta\\)是可训练参数
 
 + 状态价值函数
 
@@ -65,10 +65,10 @@ $$V_\pi(s_t)=E_A[Q_\pi(s_t,A)]=\sum_a \pi(a|s_t) \cdot Q_\pi(s_t,a), \space (A \
 
 $$V_\pi(s_t;\theta)=\sum_a \pi(a|s_t;\theta) \cdot Q_\pi(s_t,a)$$
 
-目标是最大化$J(\theta)=E_S[V_pi(S;\theta)]$, 这里采用策略梯度下降(不严谨推导--ShusenWang)
+目标是最大化\\(J(\theta)=E_S[V_pi(S;\theta)]\\), 这里采用策略梯度下降(不严谨推导--ShusenWang)
  
 + *采样s*
-+ $\theta \larr \theta + \beta \frac{\partial V(s;\theta)}{\partial \theta}$
++ \\(\theta \larr \theta + \beta \frac{\partial V(s;\theta)}{\partial \theta}\\)
 
 $$\frac{\partial V(s;\theta)}{\partial \theta} = \sum_a\frac{\partial \pi(a|s;\theta)}{\partial \theta}\cdot Q_\pi(s,a)=\sum_a\pi(a|s;\theta)\frac{\partial log\pi(a|s;\theta)}{\partial \theta}\cdot Q_\pi(s,a)=E_A[\frac{\partial log\pi(A|s;\theta)}{\partial \theta}\cdot Q_\pi(s,A)], Q_\pi \space independent \space with \space \theta$$
 
