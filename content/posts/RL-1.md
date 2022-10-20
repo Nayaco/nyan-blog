@@ -2,8 +2,9 @@
 title: "强化学习(1)"
 date: 2022-10-17T15:50:01+08:00
 draft: false
+math: true
 tags: ["ML", "强化学习"]
-summary: ASC22不丢人
+summary: 强化学习学习笔记
 ---
 ![](/images/qdn-1.png)
 
