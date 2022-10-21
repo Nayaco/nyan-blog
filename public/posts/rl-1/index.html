@@ -20,7 +20,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.nyanco.top/posts/rl-1/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-10-17T15:50:01+08:00" />
-<meta property="article:modified_time" content="2022-10-21T10:57:39+08:00" />
+<meta property="article:modified_time" content="2022-10-21T11:01:11+08:00" />
 
 
 
@@ -140,7 +140,7 @@ $\pi(a|s)$输出为当前状态选择a的概率</li>
 <p>目标是最大化$J(\theta)=E_S[V_pi(S;\theta)]$, 这里采用策略梯度下降(不严谨推导&ndash;ShusenWang)</p>
 <ul>
 <li><em>采样s</em></li>
-<li>$\theta \larr \theta + \beta \frac{\partial V(s;\theta)}{\partial \theta}$</li>
+<li>$\theta \gets \theta + \beta \frac{\partial V(s;\theta)}{\partial \theta}$</li>
 </ul>
 <p>$$\frac{\partial V(s;\theta)}{\partial \theta} = \sum_a\frac{\partial \pi(a|s;\theta)}{\partial \theta}\cdot Q_\pi(s,a)=\sum_a\pi(a|s;\theta)\frac{\partial log\pi(a|s;\theta)}{\partial \theta}\cdot Q_\pi(s,a)=E_A[\frac{\partial log\pi(A|s;\theta)}{\partial \theta}\cdot Q_\pi(s,A)], Q_\pi \space independent \space with \space \theta$$</p>
 <p>对于连续变量采用蒙特卡罗近似近似上述期望</p>

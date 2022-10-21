@@ -68,7 +68,7 @@ $$V_\pi(s_t;\theta)=\sum_a \pi(a|s_t;\theta) \cdot Q_\pi(s_t,a)$$
 目标是最大化$J(\theta)=E_S[V_pi(S;\theta)]$, 这里采用策略梯度下降(不严谨推导--ShusenWang)
  
 + *采样s*
-+ $\theta \larr \theta + \beta \frac{\partial V(s;\theta)}{\partial \theta}$
++ $\theta \gets \theta + \beta \frac{\partial V(s;\theta)}{\partial \theta}$
 
 $$\frac{\partial V(s;\theta)}{\partial \theta} = \sum_a\frac{\partial \pi(a|s;\theta)}{\partial \theta}\cdot Q_\pi(s,a)=\sum_a\pi(a|s;\theta)\frac{\partial log\pi(a|s;\theta)}{\partial \theta}\cdot Q_\pi(s,a)=E_A[\frac{\partial log\pi(A|s;\theta)}{\partial \theta}\cdot Q_\pi(s,A)], Q_\pi \space independent \space with \space \theta$$
 
