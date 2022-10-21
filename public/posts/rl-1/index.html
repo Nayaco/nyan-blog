@@ -20,7 +20,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.nyanco.top/posts/rl-1/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-10-17T15:50:01+08:00" />
-<meta property="article:modified_time" content="2022-10-20T16:12:35+08:00" />
+<meta property="article:modified_time" content="2022-10-21T10:57:39+08:00" />
 
 
 
@@ -102,24 +102,24 @@ U_t = \sum_{n=0}^{&hellip;} \gamma^{n} R_{t+n}
 $$</p>
 <p>Return UT 依赖于之后的状态S动作A</p>
 <ul>
-<li>动作价值函数\(Q_\pi\)</li>
+<li>动作价值函数$Q_\pi$</li>
 </ul>
 <p>$\pi$是策略, 于是动作价值函数可以表达为</p>
 <p>$$Q_\pi(s_t, a_t)=E[U_t|S_t=s_t, A_t=a_t]$$</p>
 <p>取最大得到最优动作价值函数(optimal action-value function):</p>
 <p>$$Q^*(s_t, a_t)=\max_{\pi}Q_\pi(s_t, a_t)$$</p>
 <ul>
-<li>最优动作\(a^<em>=\argmax_aQ^</em>(s_t,a_t)\)</li>
+<li>最优动作$a^<em>=\argmax_aQ^</em>(s_t,a_t)$</li>
 </ul>
-<p>基于动作价值函数训练Q-function令\(Q(s,a;w)\approx Q^*(s,a)\)</p>
+<p>基于动作价值函数训练Q-function令$Q(s,a;w)\approx Q^*(s,a)$</p>
 <ul>
 <li>训练QDN: TD(Temporal Difference Learning)</li>
 </ul>
-<p>TD算法核心\(T_{estimateOverall} \approx T_{realAtoMid} + T_{estimateMidtoB}\)</p>
+<p>TD算法核心$T_{estimateOverall} \approx T_{realAtoMid} + T_{estimateMidtoB}$</p>
 <p>$$\to Q(s_t,a_t;w) \approx r_t + \gamma Q(s_{t+1},a_{t+1};w)$$</p>
-<p>其中\(r_t\)为当前时刻价值的ground truth</p>
+<p>其中$r_t$为当前时刻价值的ground truth</p>
 <p>该推论可通过折扣回报的展开得到, 公式来源于Q的自治条件</p>
-<p>TD的目标是让\(Q(s_t,a_t;w)\)无限接近于公式的后半部分</p>
+<p>TD的目标是让$Q(s_t,a_t;w)$无限接近于公式的后半部分</p>
 <p>$$
 y_r = r_t + \gamma Q(s_{t+1},a_{t+1};w)\
 L_{t} = \frac{1}{2}[Q(s_t,a_t;w) - y_t]^2\
@@ -129,18 +129,18 @@ $$</p>
 <h2 id="状态价值函数基于策略">状态价值函数(基于策略)</h2>
 <ul>
 <li>策略函数
-\(\pi(a|s)\)输出为当前状态选择a的概率</li>
+$\pi(a|s)$输出为当前状态选择a的概率</li>
 </ul>
-<p>参数化策略函数\(\pi(a|s;\theta)\) \(\theta\)是可训练参数</p>
+<p>参数化策略函数$\pi(a|s;\theta)$ $\theta$是可训练参数</p>
 <ul>
 <li>状态价值函数</li>
 </ul>
 <p>$$V_\pi(s_t)=E_A[Q_\pi(s_t,A)]=\sum_a \pi(a|s_t) \cdot Q_\pi(s_t,a), \space (A \sim \pi(\cdot|s_t))$$</p>
 <p>$$V_\pi(s_t;\theta)=\sum_a \pi(a|s_t;\theta) \cdot Q_\pi(s_t,a)$$</p>
-<p>目标是最大化\(J(\theta)=E_S[V_pi(S;\theta)]\), 这里采用策略梯度下降(不严谨推导&ndash;ShusenWang)</p>
+<p>目标是最大化$J(\theta)=E_S[V_pi(S;\theta)]$, 这里采用策略梯度下降(不严谨推导&ndash;ShusenWang)</p>
 <ul>
 <li><em>采样s</em></li>
-<li>\(\theta \larr \theta + \beta \frac{\partial V(s;\theta)}{\partial \theta}\)</li>
+<li>$\theta \larr \theta + \beta \frac{\partial V(s;\theta)}{\partial \theta}$</li>
 </ul>
 <p>$$\frac{\partial V(s;\theta)}{\partial \theta} = \sum_a\frac{\partial \pi(a|s;\theta)}{\partial \theta}\cdot Q_\pi(s,a)=\sum_a\pi(a|s;\theta)\frac{\partial log\pi(a|s;\theta)}{\partial \theta}\cdot Q_\pi(s,a)=E_A[\frac{\partial log\pi(A|s;\theta)}{\partial \theta}\cdot Q_\pi(s,A)], Q_\pi \space independent \space with \space \theta$$</p>
 <p>对于连续变量采用蒙特卡罗近似近似上述期望</p>
