@@ -2,16 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://blog.nyanco.top/tags/ml/</loc>
-    <lastmod>2022-10-21T11:01:11+08:00</lastmod>
-  </url><url>
     <loc>https://blog.nyanco.top/</loc>
-    <lastmod>2022-10-21T11:01:11+08:00</lastmod>
+    <lastmod>2024-05-24T15:09:15+08:00</lastmod>
   </url><url>
     <loc>https://blog.nyanco.top/posts/</loc>
-    <lastmod>2022-10-21T11:01:11+08:00</lastmod>
+    <lastmod>2024-05-24T15:09:15+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.nyanco.top/posts/torch-extension/</loc>
+    <lastmod>2024-05-24T15:09:15+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.nyanco.top/tags/cuda/</loc>
+    <lastmod>2024-05-21T13:53:41+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.nyanco.top/posts/cuda-gemm/</loc>
+    <lastmod>2024-05-21T13:53:41+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.nyanco.top/tags/gemm/</loc>
+    <lastmod>2024-05-21T13:53:41+08:00</lastmod>
   </url><url>
     <loc>https://blog.nyanco.top/tags/</loc>
+    <lastmod>2024-05-21T13:53:41+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.nyanco.top/tags/ml/</loc>
     <lastmod>2022-10-21T11:01:11+08:00</lastmod>
   </url><url>
     <loc>https://blog.nyanco.top/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</loc>
@@ -45,10 +57,13 @@
     <lastmod>2022-10-20T16:11:32+08:00</lastmod>
   </url><url>
     <loc>https://blog.nyanco.top/tags/linux/</loc>
-    <lastmod>2022-10-20T16:11:36+08:00</lastmod>
+    <lastmod>2022-10-20T15:57:37+08:00</lastmod>
   </url><url>
     <loc>https://blog.nyanco.top/posts/sed-usage/</loc>
     <lastmod>2022-10-20T15:57:24+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.nyanco.top/tags/linux/</loc>
+    <lastmod>2022-10-20T16:11:36+08:00</lastmod>
   </url><url>
     <loc>https://blog.nyanco.top/posts/extract-and-repack-initramfs/</loc>
     <lastmod>2022-10-20T16:11:36+08:00</lastmod>

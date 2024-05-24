@@ -4,17 +4,16 @@
     <title>PXE on NyanCの錬金工坊</title>
     <link>https://blog.nyanco.top/tags/pxe/</link>
     <description>Recent content in PXE on NyanCの錬金工坊</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 18 Mar 2021 13:42:04 +0800</lastBuildDate><atom:link href="https://blog.nyanco.top/tags/pxe/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 20 Oct 2022 15:57:37 +0800</lastBuildDate>
+    <atom:link href="https://blog.nyanco.top/tags/pxe/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Build a Diskless Cluster(Centos7)</title>
       <link>https://blog.nyanco.top/posts/build-a-diskless-cluster/</link>
       <pubDate>Thu, 18 Mar 2021 13:42:04 +0800</pubDate>
-      
       <guid>https://blog.nyanco.top/posts/build-a-diskless-cluster/</guid>
       <description>Build a Diskless Cluster With PXE, Easy</description>
     </item>
-    
   </channel>
 </rss>

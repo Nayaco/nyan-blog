@@ -20,6 +20,7 @@ enableEmoji = true
   favicon = "/images/github.png"
   location = "China"
   menu_item_separator = " - "
+  math = true
 [[params.social]]
   icon = "github"
   name = "Github"
