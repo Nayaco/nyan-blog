@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="zh-cn">
   <head>
-    <title>强化学习(2) // NyanCの錬金工坊</title>
+    <title>CUDA gemm优化笔记(1) // NyanCの錬金工坊</title>
     <link rel="shortcut icon" href="/images/github.png" />
     <meta charset="utf-8" />
     <meta name="generator" content="Hugo 0.134.1">
@@ -13,20 +13,20 @@
     
     
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="强化学习(2)">
-  <meta name="twitter:description" content="强化学习学习笔记">
+  <meta name="twitter:title" content="CUDA gemm优化笔记(1)">
+  <meta name="twitter:description" content="optimization of CUDA GEMM optimization">
 
-    <meta property="og:url" content="https://blog.nyanco.top/posts/rl-2/">
+    <meta property="og:url" content="https://blog.nyanco.top/posts/cuda-gemm/">
   <meta property="og:site_name" content="NyanCの錬金工坊">
-  <meta property="og:title" content="强化学习(2)">
-  <meta property="og:description" content="强化学习学习笔记">
+  <meta property="og:title" content="CUDA gemm优化笔记(1)">
+  <meta property="og:description" content="optimization of CUDA GEMM optimization">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2022-10-20T15:35:47+08:00">
-    <meta property="article:modified_time" content="2022-10-20T15:49:07+08:00">
-    <meta property="article:tag" content="ML">
-    <meta property="article:tag" content="强化学习">
+    <meta property="article:published_time" content="2024-05-10T15:20:40+08:00">
+    <meta property="article:modified_time" content="2024-05-21T13:53:41+08:00">
+    <meta property="article:tag" content="CUDA">
+    <meta property="article:tag" content="Gemm">
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
@@ -70,41 +70,34 @@
       
   <article class="post">
     <header class="post-header">
-      <h1 class ="post-title">强化学习(2)</h1>
+      <h1 class ="post-title">CUDA gemm优化笔记(1)</h1>
       <div class="post-meta">
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
   <title>calendar</title>
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
 </svg>
-          Oct 20, 2022
+          May 10, 2024
         </div>
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
   <title>clock</title>
   <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
 </svg>
-          1 min read
+          0 min read
         </div>
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
   <title>tag</title>
   <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
 </svg>
-              <a class="tag" href="https://blog.nyanco.top/tags/ml/">ML</a>
-              <a class="tag" href="https://blog.nyanco.top/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">强化学习</a>
+              <a class="tag" href="https://blog.nyanco.top/tags/cuda/">CUDA</a>
+              <a class="tag" href="https://blog.nyanco.top/tags/gemm/">Gemm</a>
         </div>
       </div>
     </header>
     <div class="post-content">
-      <h2 id="actor-critic">Actor-Critic</h2>
-<ul>
-<li>状态价值函数定义</li>
-</ul>
-<p>$V(s;\theta,w)=\sum_{a}\pi(a|s;\pi)\cdot q(s,a;w)$</p>
-<p>定义策略网络$\pi(a|s;\pi)$最大化$V$, 定义价值网络优化评估结果$q$近似度.</p>
-<p><img src="/images/qdn-3.png" alt=""></p>
-
+      
     </div>
     <div class="post-footer">
       

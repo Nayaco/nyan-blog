@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gemm on NyanCの錬金工坊</title>
+    <link>https://blog.nyanco.top/tags/gemm/</link>
+    <description>Recent content in Gemm on NyanCの錬金工坊</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 21 May 2024 13:53:41 +0800</lastBuildDate>
+    <atom:link href="https://blog.nyanco.top/tags/gemm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CUDA gemm优化笔记(1)</title>
+      <link>https://blog.nyanco.top/posts/cuda-gemm/</link>
+      <pubDate>Fri, 10 May 2024 15:20:40 +0800</pubDate>
+      <guid>https://blog.nyanco.top/posts/cuda-gemm/</guid>
+      <description>optimization of CUDA GEMM optimization</description>
+    </item>
+  </channel>
+</rss>
