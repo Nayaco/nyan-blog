@@ -6,8 +6,22 @@
     <description>Recent content on NyanCの錬金工坊</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 24 May 2024 15:09:15 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 01 Jul 2025 20:44:49 +0800</lastBuildDate>
     <atom:link href="https://blog.nyanco.top/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Graduate Trip Day0</title>
+      <link>https://blog.nyanco.top/posts/graduate-trip-day0/</link>
+      <pubDate>Tue, 01 Jul 2025 20:16:45 +0800</pubDate>
+      <guid>https://blog.nyanco.top/posts/graduate-trip-day0/</guid>
+      <description>&lt;h3 id=&#34;准备工作&#34;&gt;准备工作&lt;/h3&gt;&#xA;&lt;h3 id=&#34;计划安排&#34;&gt;计划安排&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Day-1&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;上午：你好酒店-汉庭星海广场 松江路-黑石礁 1号线 30min&lt;/li&gt;&#xA;&lt;li&gt;中午：老虎滩&lt;/li&gt;&#xA;&lt;li&gt;下午：老虎滩 + 渔人码头&lt;/li&gt;&#xA;&lt;li&gt;晚上：大连中央大街美食街&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Day-2&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;上午：海之韵&lt;/li&gt;&#xA;&lt;li&gt;下午：棒槌岛&lt;/li&gt;&#xA;&lt;li&gt;晚上：星海广场&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Day-3 沈阳&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;下午：故宫&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Megatron Lm</title>
+      <link>https://blog.nyanco.top/posts/megatron-lm/</link>
+      <pubDate>Mon, 21 Oct 2024 11:15:46 +0800</pubDate>
+      <guid>https://blog.nyanco.top/posts/megatron-lm/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Torch Extension</title>
       <link>https://blog.nyanco.top/posts/torch-extension/</link>
@@ -97,14 +111,14 @@
       <link>https://blog.nyanco.top/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://blog.nyanco.top/about/</guid>
-      <description>Welcome to NyanChan&amp;rsquo;s blog, I&amp;rsquo;m NyanC! Nice to meet you in this site, and I&amp;rsquo;ll post blogs to my blog site irregularly to share my knowledge and my life. </description>
+      <description>&lt;p&gt;Welcome to NyanChan&amp;rsquo;s blog, I&amp;rsquo;m NyanC! Nice to meet you in this site, and I&amp;rsquo;ll post blogs to my blog site irregularly to share my knowledge and my life.&#xA;&lt;img src=&#34;https://blog.nyanco.top/images/mopemope.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Friends</title>
       <link>https://blog.nyanco.top/friends/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://blog.nyanco.top/friends/</guid>
-      <description>欢迎交换友情链接~~呐~呐~呐~&#xA;三个学长 来自上海的台湾鼓手 跳跳鱼senpai 鱼 </description>
+      <description>&lt;p&gt;欢迎交换友情链接~~呐&lt;del&gt;呐&lt;/del&gt;呐~&lt;/p&gt;&#xA;&#xA;&lt;a target=&#34;_blank&#34; href=https://qsctech-sange.github.io/ title=三个学长 class=&#34;friendurl&#34;&gt;&#xA;  &lt;div class=&#34;frienddiv&#34;&gt;&#xA;    &lt;div class=&#34;frienddivleft&#34;&gt;&#xA;      &lt;img class=&#34;myfriend&#34; src=https://cdn.jsdelivr.net/gh/QSCTech-Sange/picBed/red_shark.webp /&gt;&#xA;    &lt;/div&gt;&#xA;    &lt;div class=&#34;frienddivright&#34;&gt;&#xA;      &lt;div class=&#34;friendname&#34;&gt;三个学长&lt;/div&gt;&#xA;      &lt;div class=&#34;friendinfo&#34;&gt;来自上海的台湾鼓手&lt;/div&gt;&#xA;    &lt;/div&gt;&#xA;  &lt;/div&gt;&#xA;&lt;/a&gt;&#xA;&#xA;&#xA;&lt;a target=&#34;_blank&#34; href=https://ttfish.top/ title=跳跳鱼senpai class=&#34;friendurl&#34;&gt;&#xA;  &lt;div class=&#34;frienddiv&#34;&gt;&#xA;    &lt;div class=&#34;frienddivleft&#34;&gt;&#xA;      &lt;img class=&#34;myfriend&#34; src=https://ttfish.top/css/images/avatar.png /&gt;&#xA;    &lt;/div&gt;&#xA;    &lt;div class=&#34;frienddivright&#34;&gt;&#xA;      &lt;div class=&#34;friendname&#34;&gt;跳跳鱼senpai&lt;/div&gt;&#xA;      &lt;div class=&#34;friendinfo&#34;&gt;鱼&lt;/div&gt;&#xA;    &lt;/div&gt;&#xA;  &lt;/div&gt;&#xA;&lt;/a&gt;</description>
     </item>
   </channel>
 </rss>

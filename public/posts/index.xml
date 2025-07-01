@@ -6,8 +6,22 @@
     <description>Recent content in Posts on NyanCの錬金工坊</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 24 May 2024 15:09:15 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 01 Jul 2025 20:44:49 +0800</lastBuildDate>
     <atom:link href="https://blog.nyanco.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Graduate Trip Day0</title>
+      <link>https://blog.nyanco.top/posts/graduate-trip-day0/</link>
+      <pubDate>Tue, 01 Jul 2025 20:16:45 +0800</pubDate>
+      <guid>https://blog.nyanco.top/posts/graduate-trip-day0/</guid>
+      <description>&lt;h3 id=&#34;准备工作&#34;&gt;准备工作&lt;/h3&gt;&#xA;&lt;h3 id=&#34;计划安排&#34;&gt;计划安排&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Day-1&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;上午：你好酒店-汉庭星海广场 松江路-黑石礁 1号线 30min&lt;/li&gt;&#xA;&lt;li&gt;中午：老虎滩&lt;/li&gt;&#xA;&lt;li&gt;下午：老虎滩 + 渔人码头&lt;/li&gt;&#xA;&lt;li&gt;晚上：大连中央大街美食街&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Day-2&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;上午：海之韵&lt;/li&gt;&#xA;&lt;li&gt;下午：棒槌岛&lt;/li&gt;&#xA;&lt;li&gt;晚上：星海广场&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Day-3 沈阳&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;下午：故宫&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Megatron Lm</title>
+      <link>https://blog.nyanco.top/posts/megatron-lm/</link>
+      <pubDate>Mon, 21 Oct 2024 11:15:46 +0800</pubDate>
+      <guid>https://blog.nyanco.top/posts/megatron-lm/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Torch Extension</title>
       <link>https://blog.nyanco.top/posts/torch-extension/</link>
