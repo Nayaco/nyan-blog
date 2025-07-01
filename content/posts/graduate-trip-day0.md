@@ -2,6 +2,8 @@
 title: "Graduate Trip Day0"
 date: 2025-07-01T20:16:45+08:00
 draft: false
+tags: ["生活"]
+summary: 毕业旅行安排
 ---
 
 ### 准备工作
